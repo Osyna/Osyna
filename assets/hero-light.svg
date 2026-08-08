@@ -38,7 +38,7 @@
   <circle cx="46" cy="28" r="5" fill="#dfe3e0"/>
   <circle cx="64" cy="28" r="5" fill="#dfe3e0"/>
   <text x="86" y="33" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#666f77">irvin@osyna:~$ whoami<tspan fill="#5b7a3f">_<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.45;0.5;0.95;1" dur="1.2s" repeatCount="indefinite"/></tspan></text>
-  <text x="976" y="33" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#666f77">SYNCED 2026-08-07 06:19 UTC</text>
+  <text x="976" y="33" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#666f77">SYNCED 2026-08-08 05:56 UTC</text>
 
   <!-- wordmark -->
   <text x="38" y="112" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="58" font-weight="700" letter-spacing="4" fill="#14171a">OSYNA</text>
@@ -63,7 +63,7 @@
       <text x="170" y="248" font-size="22" font-weight="600" fill="#14171a">★ 35</text>
       <line x1="105" y1="200" x2="105" y2="248" stroke="#dfe3e0"/>
       <text x="300" y="222" font-size="10" letter-spacing="1.5" fill="#666f77">DL/MO</text>
-      <text x="300" y="248" font-size="22" font-weight="600" fill="#14171a">5,741</text>
+      <text x="300" y="248" font-size="22" font-weight="600" fill="#14171a">5,745</text>
       <line x1="235" y1="200" x2="235" y2="248" stroke="#dfe3e0"/>
       <text x="430" y="222" font-size="10" letter-spacing="1.5" fill="#666f77">ACTIVE SINCE</text>
       <text x="430" y="248" font-size="22" font-weight="600" fill="#14171a">2014</text>
@@ -81,8 +81,8 @@
   <!-- sparkline: tanuki-context npm downloads -->
   <text x="40" y="288" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="10" letter-spacing="1" fill="#666f77">TANUKI-CONTEXT · NPM DOWNLOADS · 30D</text>
   <text x="960" y="288" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#666f77">PEAK 1,471/DAY</text>
-  <path d="M630.0,332.0 L641.4,332.0 L652.8,332.0 L664.1,332.0 L675.5,332.0 L686.9,332.0 L698.3,332.0 L709.7,332.0 L721.0,332.0 L732.4,332.0 L743.8,332.0 L755.2,328.6 L766.6,331.8 L777.9,332.0 L789.3,331.9 L800.7,332.0 L812.1,331.9 L823.4,332.0 L834.8,332.0 L846.2,301.6 L857.6,305.9 L869.0,298.0 L880.3,314.5 L891.7,326.5 L903.1,326.4 L914.5,327.8 L925.9,330.8 L937.2,329.6 L948.6,330.7 L960.0,331.6 L960.0,332.0 L630.0,332.0 Z" fill="#5b7a3f" opacity="0.12"/>
-  <path d="M630.0,332.0 L641.4,332.0 L652.8,332.0 L664.1,332.0 L675.5,332.0 L686.9,332.0 L698.3,332.0 L709.7,332.0 L721.0,332.0 L732.4,332.0 L743.8,332.0 L755.2,328.6 L766.6,331.8 L777.9,332.0 L789.3,331.9 L800.7,332.0 L812.1,331.9 L823.4,332.0 L834.8,332.0 L846.2,301.6 L857.6,305.9 L869.0,298.0 L880.3,314.5 L891.7,326.5 L903.1,326.4 L914.5,327.8 L925.9,330.8 L937.2,329.6 L948.6,330.7 L960.0,331.6" fill="none" stroke="#5b7a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1000" stroke-dasharray="1000" stroke-dashoffset="1000">
+  <path d="M630.0,332.0 L641.4,332.0 L652.8,332.0 L664.1,332.0 L675.5,332.0 L686.9,332.0 L698.3,332.0 L709.7,332.0 L721.0,332.0 L732.4,332.0 L743.8,328.6 L755.2,331.8 L766.6,332.0 L777.9,331.9 L789.3,332.0 L800.7,331.9 L812.1,332.0 L823.4,332.0 L834.8,301.6 L846.2,305.9 L857.6,298.0 L869.0,314.5 L880.3,326.5 L891.7,326.4 L903.1,327.8 L914.5,330.8 L925.9,329.6 L937.2,330.7 L948.6,331.6 L960.0,331.9 L960.0,332.0 L630.0,332.0 Z" fill="#5b7a3f" opacity="0.12"/>
+  <path d="M630.0,332.0 L641.4,332.0 L652.8,332.0 L664.1,332.0 L675.5,332.0 L686.9,332.0 L698.3,332.0 L709.7,332.0 L721.0,332.0 L732.4,332.0 L743.8,328.6 L755.2,331.8 L766.6,332.0 L777.9,331.9 L789.3,332.0 L800.7,331.9 L812.1,332.0 L823.4,332.0 L834.8,301.6 L846.2,305.9 L857.6,298.0 L869.0,314.5 L880.3,326.5 L891.7,326.4 L903.1,327.8 L914.5,330.8 L925.9,329.6 L937.2,330.7 L948.6,331.6 L960.0,331.9" fill="none" stroke="#5b7a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" pathLength="1000" stroke-dasharray="1000" stroke-dashoffset="1000">
     <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="1.8s" fill="freeze" begin="0.2s"/>
   </path>
 
