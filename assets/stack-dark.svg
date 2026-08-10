@@ -47,7 +47,7 @@
     <g opacity="0">
       <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.15s" fill="freeze"/>
       <text x="330" y="110" font-weight="600" fill="#8aac69">uptime</text>
-      <text x="424" y="110" fill="#eef5e6">12 yrs on github · 23 repos · ★ 35</text>
+      <text x="424" y="110" fill="#eef5e6">12 yrs on github · 23 repos · ★ 36</text>
     </g>
     <g opacity="0">
       <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.24s" fill="freeze"/>
