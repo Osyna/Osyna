@@ -38,7 +38,7 @@
   <circle cx="46" cy="28" r="5" fill="#1d251a"/>
   <circle cx="64" cy="28" r="5" fill="#1d251a"/>
   <text x="86" y="33" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#8a9782">irvin@osyna:~$ whoami<tspan fill="#ccea7a">_<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.45;0.5;0.95;1" dur="1.2s" repeatCount="indefinite"/></tspan></text>
-  <text x="976" y="33" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#8a9782">SYNCED 2026-08-16 05:42 UTC</text>
+  <text x="976" y="33" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#8a9782">SYNCED 2026-08-17 05:49 UTC</text>
 
   <!-- wordmark -->
   <text x="38" y="112" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="58" font-weight="700" letter-spacing="4" fill="#eef5e6" filter="url(#glow)">OSYNA</text>
@@ -63,7 +63,7 @@
       <text x="170" y="248" font-size="22" font-weight="600" fill="#eef5e6">★ 37</text>
       <line x1="105" y1="200" x2="105" y2="248" stroke="#1d251a"/>
       <text x="300" y="222" font-size="10" letter-spacing="1.5" fill="#8a9782">DL/MO</text>
-      <text x="300" y="248" font-size="22" font-weight="600" fill="#eef5e6">5,800</text>
+      <text x="300" y="248" font-size="22" font-weight="600" fill="#eef5e6">6,120</text>
       <line x1="235" y1="200" x2="235" y2="248" stroke="#1d251a"/>
       <text x="430" y="222" font-size="10" letter-spacing="1.5" fill="#8a9782">ACTIVE SINCE</text>
       <text x="430" y="248" font-size="22" font-weight="600" fill="#eef5e6">2014</text>
