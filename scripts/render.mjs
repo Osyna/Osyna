@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { gather } from "./data.mjs";
-import { matrixField, cardEffect } from "./art.mjs";
+import { matrixField } from "./art.mjs";
 import { renderGif } from "./gif.mjs";
 import { updateLatest } from "./latest.mjs";
 
@@ -12,14 +12,13 @@ const THEMES = {
   light: { bg: "#effaf4", panel: "#e2f2e8", ink: "#103b27", muted: "#446a55", border: "#bfdac9", accent: "#087649", green: "#0c8255", chip: "#dceee3", ramp: ["#dcebe1", "#b2dfc4", "#75cda1", "#2fac75", "#087749"] },
 };
 const PROJECTS = [
-  { name: "tanuki-context", art: "tanuki", effect: "packets", category: "Context engineering", description: "MCP server + CLI. Render bulky logs as image pages, or retrieve them by slice. Compare token costs before compressing.", tags: ["MCP", "LLM", "npm"], color: "#34d399" },
-  { name: "Macaw", art: "macaw", effect: "spectrum", category: "Local-first AI", description: "Speech-to-text for Linux and Windows. Swap inference engines at runtime, with GPU acceleration and local processing.", tags: ["Speech-to-text", "CUDA", "Python"], color: "#6ee7b7" },
-  { name: "QuestionAir", art: "question", effect: "constellation", category: "Learning tools", description: "Turn source material into multiple-choice assessments. LLaMA via Ollama, keyword extraction and French quality checks.", tags: ["LLM", "Education", "NLP"], color: "#10b981" },
-  { name: "Tiingo-python", art: "market", effect: "candles", category: "Financial data", description: "Strictly typed Tiingo market-data client. EOD, intraday, crypto, FX and fundamentals, built on httpx.", tags: ["Python", "Finance", "API"], color: "#a7f3d0" },
-  { name: "RadiAll", art: "radial", effect: "radar", category: "Linux desktop", description: "A radial application launcher for Wayland, written in Rust. A different way to move around your desktop.", tags: ["Rust", "Linux", "Wayland"], color: "#2dd4bf" },
-  { name: "Pinna", art: "map", effect: "contours", category: "Places worth keeping", description: "Keep your places on your own terms. A self-hostable alternative to Mapstr, built with Vue and ready to deploy.", tags: ["Vue", "Self-hosted", "Maps"], color: "#86efac" },
+  { name: "tanuki-context", art: "tanuki", category: "Context engineering", description: "MCP server + CLI. Render bulky logs as image pages, or retrieve them by slice. Compare token costs before compressing.", tags: ["MCP", "LLM", "npm"] },
+  { name: "Macaw", art: "macaw", category: "Local-first AI", description: "Speech-to-text for Linux and Windows. Swap inference engines at runtime, with GPU acceleration and local processing.", tags: ["Speech-to-text", "CUDA", "Python"] },
+  { name: "QuestionAir", art: "question", category: "Learning tools", description: "Turn source material into multiple-choice assessments. LLaMA via Ollama, keyword extraction and French quality checks.", tags: ["LLM", "Education", "NLP"] },
+  { name: "Tiingo-python", art: "market", category: "Financial data", description: "Strictly typed Tiingo market-data client. EOD, intraday, crypto, FX and fundamentals, built on httpx.", tags: ["Python", "Finance", "API"] },
+  { name: "RadiAll", art: "radial", category: "Linux desktop", description: "A radial application launcher for Wayland, written in Rust. A different way to move around your desktop.", tags: ["Rust", "Linux", "Wayland"] },
+  { name: "Pinna", art: "map", category: "Places worth keeping", description: "Keep your places on your own terms. A self-hostable alternative to Mapstr, built with Vue and ready to deploy.", tags: ["Vue", "Self-hosted", "Maps"] },
 ];
-const LATEST_EFFECTS = ["rain", "circuit", "scan", "orbit"];
 const esc = (value) => String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" })[c]);
 const fmt = (n) => n.toLocaleString("en-US");
 const text = (x, y, value, size, color, extra = "") => `<text x="${x}" y="${y}" font-size="${size}" fill="${color}" ${extra}>${esc(value)}</text>`;
@@ -44,10 +43,9 @@ function chips(items, x, y, T, size = 13) {
   }).join("");
 }
 function hero(stats, mobile, T, phase = 0) {
-  const W = mobile ? 420 : 1000, H = mobile ? 470 : 340;
+  const W = mobile ? 420 : 1000, H = mobile ? 490 : 380;
   const metrics = [[fmt(stats.followers), "Followers"], [fmt(stats.repos), "Repositories"], [fmt(stats.stars), "Total stars"], [String(stats.sinceYear), "On GitHub since"]];
   let body = `<defs><clipPath id="hero-clip">${rect(1, 1, W - 2, H - 2, "white", 14)}</clipPath><filter id="hero-ink" x="-10%" y="-20%" width="120%" height="140%"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00150b" flood-opacity=".9"/></filter></defs><g clip-path="url(#hero-clip)">${matrixField(W, H, phase)}</g>`;
-  body += rect(18, mobile ? 273 : 262, W - 36, mobile ? 154 : 62, "#02140c", 10, 'fill-opacity=".58" stroke="#26734c" stroke-opacity=".45"');
   body += `<g filter="url(#hero-ink)">`;
   body += text(32, 42, "Data · AI · Systems · Open source", mobile ? 14 : 15, "#a5c8b3");
   body += text(30, mobile ? 112 : 116, "Osyna", mobile ? 64 : 76, "#e8fff1", 'font-weight="750" letter-spacing="-2"');
@@ -55,14 +53,18 @@ function hero(stats, mobile, T, phase = 0) {
   body += text(32, mobile ? 179 : 183, "Open-source creator. Tech explorer.", mobile ? 17 : 18, "#d4efdf");
   body += text(32, mobile ? 215 : 218, "I build tools for LLMs and data systems,", mobile ? 16 : 18, "#bedaca");
   body += text(32, mobile ? 241 : 245, "turning complex data into golden insights.", mobile ? 16 : 18, "#bedaca");
-  metrics.forEach(([value, label], i) => {
-    const x = mobile ? 34 + (i % 2) * 196 : 38 + i * (W - 76) / 4;
-    const y = mobile ? 304 + Math.floor(i / 2) * 78 : 290;
-    body += text(x, y, value, 27, "#e8fff1", 'font-weight="600"') + text(x, y + 23, label, 13, "#a1bfaf");
-  });
-  if (mobile) body += text(32, 447, "Freelance · Brussels, Belgium", 14, "#a5c8b3");
   body += `</g>`;
-  return svg(W, H, `Osyna. Emerald pixel-matrix waves and flowing data. ${stats.repos} public repositories, ${stats.stars} stars, ${stats.followers} followers.`, body, { ...T, bg: "#03140d", border: "#21603e" });
+  body += rect(20, 278, W - 40, mobile ? 164 : 82, "#061e14", 10, 'stroke="#214b36" stroke-opacity=".65"');
+  const columns = mobile ? 2 : 4, cellWidth = (W - 40) / columns;
+  for (let i = 1; i < columns; i++) body += `<path d="M${20 + i * cellWidth} 294V${mobile ? 426 : 344}" stroke="#214b36"/>`;
+  if (mobile) body += `<path d="M36 360H384" stroke="#214b36"/>`;
+  metrics.forEach(([value, label], i) => {
+    const x = 20 + ((i % columns) + 0.5) * cellWidth;
+    const y = 317 + Math.floor(i / columns) * 82;
+    body += text(x, y, value, 32, "#e8fff1", 'text-anchor="middle" font-weight="600" style="font-variant-numeric:tabular-nums"') + text(x, y + 25, label, 14, "#a1bfaf", 'text-anchor="middle"');
+  });
+  if (mobile) body += text(32, 470, "Freelance · Brussels, Belgium", 14, "#a5c8b3");
+  return svg(W, H, `Osyna. Emerald pixel-matrix waves. ${stats.repos} public repositories, ${stats.stars} stars, ${stats.followers} followers.`, body, { ...T, bg: "#03140d", border: "#21603e" });
 }
 function project(project, stats, mobile, T, latest = false) {
   const W = mobile ? 320 : 480, H = latest ? (mobile ? 300 : 200) : (mobile ? 360 : 240);
@@ -70,7 +72,7 @@ function project(project, stats, mobile, T, latest = false) {
   if (!repo) throw new Error(`Repository not returned by GitHub: ${project.name}`);
   const nameLimit = mobile ? 19 : 29;
   const name = project.name.length > nameLimit ? `${project.name.slice(0, nameLimit - 1)}…` : project.name;
-  let body = cardEffect(project.effect, W, H, T) + rect(22, 22, 4, 24, project.color, 2) + text(36, 42, name, mobile ? 24 : 25, T.accent, 'font-weight="650"');
+  let body = `<defs><linearGradient id="card-surface" x1="0" y1="1" x2="1" y2="0"><stop stop-color="${T.bg}"/><stop offset=".55" stop-color="${T.panel}"/><stop offset="1" stop-color="${T.chip}"/></linearGradient></defs>` + text(22, 42, name, mobile ? 24 : 25, T.accent, 'font-weight="650"');
   body += text(22, mobile ? 80 : 70, project.category, mobile ? 16 : 13, T.muted);
   const columns = mobile ? 24 : 52, maxLines = latest ? (mobile ? 5 : 2) : (mobile ? 6 : 3);
   const lines = wrap(project.description, columns);
@@ -81,7 +83,7 @@ function project(project, stats, mobile, T, latest = false) {
   });
   body += chips(project.tags, 22, latest ? H - 44 : (mobile ? 318 : 196), T, mobile ? 16 : 12);
   body += text(22, H - 20, `★ ${fmt(repo.stars)}`, 16, T.accent) + text(105, H - 20, `⑂ ${fmt(repo.forks)}`, 16, T.muted) + text(W - 22, H - 20, "↗", 19, T.accent, 'text-anchor="end"');
-  return svg(W, H, `${project.name}: ${project.description} ${repo.stars} stars, ${repo.forks} forks.`, body, T);
+  return svg(W, H, `${project.name}: ${project.description} ${repo.stars} stars, ${repo.forks} forks.`, body, { ...T, bg: "url(#card-surface)" });
 }
 function sparkline(series, x, y, w, h, T) {
   const max = Math.max(...series, 1);
@@ -163,9 +165,9 @@ async function main() {
   const stats = await gather();
   const readmePath = new URL("../README.md", import.meta.url);
   const readme = updateLatest(await readFile(readmePath, "utf8"), stats.latest);
-  const latest = stats.latest.map((p, i) => ({
+  const latest = stats.latest.map((p) => ({
     ...p, description: p.description ?? "", category: `Created ${p.createdAt}`,
-    tags: p.language ? [p.language] : [], color: "#5de0a7", effect: LATEST_EFFECTS[i],
+    tags: p.language ? [p.language] : [],
   }));
   const files = [];
   for (const [theme, T] of Object.entries(THEMES)) {
@@ -181,7 +183,7 @@ async function main() {
   for (const mobile of [false, true]) {
     files.push([`matrix${mobile ? "-mobile" : ""}.gif`, await renderGif(
       (phase) => hero(stats, mobile, THEMES.dark, phase),
-      { width: mobile ? 420 : 1000, height: mobile ? 470 : 340 },
+      { width: mobile ? 420 : 1000, height: mobile ? 490 : 380 },
     )]);
   }
   await mkdir(OUT, { recursive: true });

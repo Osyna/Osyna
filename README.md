@@ -4,7 +4,7 @@
   <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: light)" srcset="./assets/matrix-light.svg">
   <source media="(prefers-reduced-motion: reduce)" srcset="./assets/matrix-dark.svg">
   <source media="(max-width: 600px)" srcset="./assets/matrix-mobile.gif">
-  <img src="./assets/matrix.gif" alt="Osyna. Animated emerald data flow and pixel-matrix waves across the entire header. Data and AI engineer, open-source creator, and live GitHub stats." width="100%">
+  <img src="./assets/matrix.gif" alt="Osyna. Animated emerald pixel-matrix waves across the header. Data and AI engineer, open-source creator, and live GitHub stats." width="100%">
 </picture>
 
 <p align="center">
@@ -148,11 +148,11 @@ Also [QML](https://github.com/Osyna/QML), [AzureBlobStorageExplorer](https://git
 
 The [nightly workflow](./.github/workflows/pulse.yml) refreshes the latest original projects (newest by creation date, excluding forks and archived repositories), counters, repository stars and forks, contribution calendar, npm download chart, and animated headers. The calendar comes from GitHub's public contribution page; downloads come from npm's reported interval, which may lag today. Counts are snapshots, not real-time widgets.
 
-The dark-emerald header has edge-to-edge pixel-matrix waves and flowing data packets, rendered into six-second GIFs for desktop and mobile. The text stays steady; browsers requesting reduced motion receive a still SVG instead. Latest and featured projects use linked cards without HTML tables, so GitHub adds no table borders.
+The dark-emerald header has edge-to-edge pixel-matrix waves, rendered into six-second GIFs for desktop and mobile. The text and evenly spaced statistics stay steady; browsers requesting reduced motion receive a still SVG instead. Latest and featured projects use linked cards without HTML tables, so GitHub adds no table borders.
 
 [The renderer](./scripts/render.mjs) uses Node.js 22 and the pinned development dependency `sharp` for SVG rasterization and GIF encoding. Local rendering also needs Fontconfig and a sans-serif font (`fontconfig fonts-dejavu-core` on Debian/Ubuntu). Published assets need no server or external image host.
 
-Project cards have distinct decorative SVG effects: pixel rain, circuit traces, scan lines, orbital nodes, data packets, audio-spectrum bars, constellations, candlesticks, radar, and contour lines. The effects are artwork, not extra activity metrics; they respect reduced-motion preferences and leave the descriptions and live counts readable.
+Project cards use a quiet forest-to-emerald gradient, with no decorative shapes or animations behind the descriptions and live counts.
 
 To check and refresh locally:
 
