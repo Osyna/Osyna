@@ -62,18 +62,18 @@ const slopeY = (x) => {
   return SLOPE.at(-1)[1];
 };
 
-const heroStars = () => {
+const heroStars = (phase) => {
   const r = rng(11);
   let s = '';
   for (let i = 0; i < 130; i++) {
     const x = 1000 * Math.pow(r(), 0.65);
     const y = Math.pow(r(), 1.5) * 230;
     const rad_ = r() < 0.1 ? 1.3 : 0.5 + r() * 0.5;
-    const o = 0.3 + r() * 0.6;
-    const delay = r() * 4;
+    const brightness = 0.3 + r() * 0.6;
+    const offset = r() * Math.PI * 2;
     if (x < 540 && r() < 0.55) continue;
-    const tw = i % 7 === 0 ? ` class="landscape-tw" style="animation-delay:-${delay.toFixed(1)}s"` : '';
-    s += `<circle cx="${f(x)}" cy="${f(y)}" r="${rad_.toFixed(2)}" opacity="${o.toFixed(2)}"${tw}/>`;
+    const opacity = brightness * (0.75 + 0.25 * Math.sin(phase * Math.PI * 4 + offset));
+    s += `<circle cx="${f(x)}" cy="${f(y)}" r="${rad_.toFixed(2)}" opacity="${opacity.toFixed(2)}"/>`;
   }
   return s;
 };
@@ -116,8 +116,10 @@ const tent = `<g>
 <path d="M949 270L934 290" stroke="#7ee8ff" stroke-width=".8" opacity=".5"/>
 </g>`;
 
-export function landscape() {
-  const stars = heroStars();
+// Phase is one six-second loop; sampling zero also gives the reduced-motion still.
+export function landscape(phase = 0) {
+  const angle = phase * Math.PI * 2;
+  const stars = heroStars(phase);
   const rays = heroRays();
   const midForest = forest(21, 0, 760, 11, 304, 14, 30);
   const frontLeft = forest(33, -10, 600, 15, 346, 34, 74);
@@ -127,16 +129,6 @@ export function landscape() {
   const nearForest = forest(37, 968, 1004, 9, (x) => slopeY(Math.min(x, 1000)) + 2, 32, 52);
 
   return `<defs>
-<style>
-.landscape-aur{animation:landscape-drift 16s ease-in-out infinite alternate}
-.landscape-aur2{animation:landscape-drift 22s ease-in-out -6s infinite alternate}
-.landscape-ray{animation:landscape-pulse 9s ease-in-out infinite alternate}
-.landscape-tw{animation:landscape-twinkle 4s ease-in-out infinite}
-@keyframes landscape-drift{from{transform:translateX(-14px);opacity:.7}to{transform:translateX(18px);opacity:1}}
-@keyframes landscape-pulse{from{opacity:.35}to{opacity:.95}}
-@keyframes landscape-twinkle{0%,100%{opacity:.25}50%{opacity:1}}
-@media (prefers-reduced-motion:reduce){.landscape-aur,.landscape-aur2,.landscape-ray,.landscape-tw{animation:none}}
-</style>
 ${lin('landscape-sky', stop(0, '#040818') + stop(0.5, '#0a1736') + stop(0.85, '#123556') + stop(1, '#17476a'))}
 ${rad('landscape-glow', stop(0, '#2fe0c0', 0.38) + stop(0.55, '#1a6fa0', 0.16) + stop(1, '#0a1736', 0), 0.5, 0.5, 0.5)}
 ${lin('landscape-aurA', stop(0, '#43ffb2', 0) + stop(0.3, '#43ffb2', 0.6) + stop(0.65, '#2fd0f0', 0.35) + stop(1, '#2a6dff', 0))}
@@ -144,6 +136,7 @@ ${lin('landscape-aurB', stop(0, '#6af0e8', 0) + stop(0.4, '#6af0e8', 0.45) + sto
 ${lin('landscape-ray', stop(0, '#6dffd2', 0) + stop(0.6, '#6dffd2', 0.55) + stop(1, '#30c8ff', 0))}
 ${blur('landscape-blur', 7)}
 ${blur('landscape-blur2', 2.2)}
+${rad('landscape-fog', stop(0, '#8de9e8', 0.16) + stop(1, '#8de9e8', 0))}
 ${lin('landscape-m1', stop(0, '#27487f') + stop(1, '#10234a'))}
 ${lin('landscape-m2', stop(0, '#2b5088') + stop(0.6, '#16305f') + stop(1, '#0c1d40'))}
 ${lin('landscape-m3', stop(0, '#14305c') + stop(1, '#091731'))}
@@ -160,10 +153,11 @@ ${rad('landscape-tentglow', stop(0, '#ffb85c', 0.65) + stop(1, '#ffb85c', 0))}
 <g fill="#dff4ff">${stars}</g>
 <g fill="#eafcff">${sparkle(610, 30, 3.6, '#eafcff', 0.9)}${sparkle(820, 22, 3, '#eafcff', 0.85)}${sparkle(960, 92, 2.6, '#eafcff', 0.8)}${sparkle(520, 112, 2.2, '#eafcff', 0.6)}${sparkle(702, 14, 2.4, '#eafcff', 0.7)}</g>
 <g filter="url(#landscape-blur)">
-<path class="landscape-aur" d="M380 70C470 20 560 110 660 62S850 14 1000 58L1000 150C880 118 800 150 690 118S470 128 380 128Z" fill="url(#landscape-aurA)" opacity=".85"/>
-<path class="landscape-aur2" d="M560 24C640 -6 720 50 800 22S940 -4 1000 22L1000 84C930 60 850 90 790 70S620 84 560 70Z" fill="url(#landscape-aurB)" opacity=".8"/>
+<path transform="translate(${f(Math.sin(angle) * 34)} ${f(Math.cos(angle) * 9)})" d="M380 70C470 20 560 110 660 62S850 14 1000 58L1040 150C880 118 800 150 690 118S470 128 380 128Z" fill="url(#landscape-aurA)" opacity="${(0.8 + Math.sin(angle) * 0.15).toFixed(3)}"/>
+<path transform="translate(${f(Math.cos(angle) * 26)} ${f(Math.sin(angle) * 8)})" d="M560 24C640 -6 720 50 800 22S940 -4 1000 22L1040 84C930 60 850 90 790 70S620 84 560 70Z" fill="url(#landscape-aurB)" opacity="${(0.8 + Math.cos(angle) * 0.15).toFixed(3)}"/>
+<path transform="translate(${f(Math.sin(angle) * 18)} ${f(Math.cos(angle) * 5)})" d="M480 54C570 112 650 16 752 58S913 84 1040 30" fill="none" stroke="#74f9c8" stroke-width="5" opacity=".32"/>
 </g>
-<g filter="url(#landscape-blur2)" class="landscape-ray" opacity=".6">${rays}</g>
+<g filter="url(#landscape-blur2)" opacity="${(0.5 + Math.sin(angle) * 0.2).toFixed(3)}" transform="translate(${f(Math.sin(angle) * 16)} 0)">${rays}</g>
 <g>
 <path d="M0 262L60 245L130 256L210 238L300 250L380 216L450 190L520 150L580 175L640 120L700 165L770 140L840 175L920 130L1000 170L1000 340L0 340Z" fill="url(#landscape-m1)"/>
 <g fill="#9fc3e6">
@@ -197,6 +191,10 @@ ${rad('landscape-tentglow', stop(0, '#ffb85c', 0.65) + stop(1, '#ffb85c', 0))}
 <path d="M820 85L808 98L816 96L822 106L829 97L836 110Z" fill="#8fb6d2" opacity=".8"/>
 <path d="M640 190L690 150L730 100L760 55M860 140L900 120" fill="none" stroke="#8fd8ff" stroke-width="1" opacity=".5"/>
 <rect x="540" y="200" width="480" height="140" fill="url(#landscape-mist)"/>
+</g>
+<g transform="translate(${f(Math.sin(angle) * 30)} ${f(Math.cos(angle) * 3)})">
+<ellipse cx="790" cy="248" rx="190" ry="19" fill="url(#landscape-fog)"/>
+<ellipse cx="925" cy="274" rx="115" ry="14" fill="url(#landscape-fog)"/>
 </g>
 <path d="M0 282L80 268L160 280L250 258L340 276L430 254L520 272L600 246L670 268L740 264L800 286L880 296L1000 300L1000 340L0 340Z" fill="url(#landscape-m3)"/>
 <path d="M0 282L80 268L160 280L250 258L340 276L430 254L520 272L600 246L670 268L740 264L800 286" fill="none" stroke="#6fb4e8" stroke-width="1" opacity=".22"/>

@@ -1,6 +1,6 @@
 name: pulse
 
-# Refreshes the illustrated profile panels from public GitHub and npm data.
+# Refreshes the profile panels, GIF headers, and latest-projects section.
 
 on:
   schedule:
@@ -11,6 +11,7 @@ on:
     paths:
       - scripts/**
       - package.json
+      - package-lock.json
       - .github/workflows/pulse.yml
 
 permissions:
@@ -30,6 +31,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: install rendering dependency
+        run: npm ci
+
       - name: check data boundaries
         run: npm test
 
@@ -42,6 +46,6 @@ jobs:
         run: |
           git config user.name "osyna-pulse[bot]"
           git config user.email "actions@users.noreply.github.com"
-          git add assets/
+          git add assets/ README.md
           git diff --cached --quiet || git commit -m "chore: refresh live stats"
           git push

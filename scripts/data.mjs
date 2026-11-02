@@ -7,6 +7,7 @@ const NPM_PKG = "tanuki-context";
 const TIMEOUT_MS = 20_000;
 const PAGE = 100;
 const DAY_MS = 86_400_000;
+const LATEST = 4;
 
 const isCount = (n) => Number.isInteger(n) && n >= 0;
 const isDay = (s) => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s) && new Date(`${s}T00:00:00Z`).toISOString().startsWith(s);
@@ -94,16 +95,34 @@ export async function gather(fetchImpl = fetch) {
   need(isCount(user?.public_repos) && isCount(user?.followers) && !Number.isNaN(created), "user");
 
   const projects = {};
+  const originals = [];
   let stars = 0;
   for (const r of repos) {
     need(
       typeof r?.name === "string" && isCount(r.stargazers_count) && isCount(r.forks_count) &&
-        (r.language === null || typeof r.language === "string"),
+      (r.language === null || typeof r.language === "string") &&
+      typeof r.fork === "boolean" && typeof r.archived === "boolean" &&
+      (r.description === null || typeof r.description === "string") &&
+      typeof r.created_at === "string" && isDay(r.created_at.slice(0, 10)) && !Number.isNaN(Date.parse(r.created_at)),
       "repo",
     );
     stars += r.stargazers_count;
     projects[r.name] = { stars: r.stargazers_count, forks: r.forks_count, language: r.language };
+    if (!r.fork && !r.archived && r.name.toLowerCase() !== GH_USER.toLowerCase()) originals.push(r);
   }
+
+  // Newest by creation date, not push date; name breaks ties so output is stable.
+  const latest = originals
+    .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at) || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))
+    .slice(0, LATEST)
+    .map((r) => ({
+      name: r.name,
+      description: r.description,
+      language: r.language,
+      stars: r.stargazers_count,
+      url: `https://github.com/${GH_USER}/${encodeURIComponent(r.name)}`,
+      createdAt: r.created_at.slice(0, 10),
+    }));
 
   need(isCount(point?.downloads), "npm point");
   need(Array.isArray(range?.downloads) && range.downloads.length >= 30, "npm range");
@@ -121,6 +140,7 @@ export async function gather(fetchImpl = fetch) {
     downloadEnd: last30[29].day,
     generatedAt: new Date(),
     projects,
+    latest,
     calendar: parseCalendar(html),
   };
 }

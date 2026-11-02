@@ -6,5 +6,8 @@
   "scripts": {
     "render": "node scripts/render.mjs",
     "test": "node --test scripts/*.test.mjs"
+  },
+  "devDependencies": {
+    "sharp": "0.35.5"
   }
 }

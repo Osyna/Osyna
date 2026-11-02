@@ -58,7 +58,18 @@ test("parseCalendar rejects a missing total, a short range, and a date gap", () 
   assert.throws(() => parseCalendar(calendarHtml().replace(`data-date="${date(100)}"`, `data-date="2030-01-01"`)), /dates/);
 });
 
-const repo = (name, stars) => ({ name, stargazers_count: stars, forks_count: 1, language: "Rust" });
+const repo = (name, stars, over = {}) => ({
+  name,
+  description: `${name} description`,
+  stargazers_count: stars,
+  forks_count: 1,
+  language: "Rust",
+  fork: false,
+  archived: false,
+  created_at: "2024-03-05T09:30:00Z",
+  pushed_at: "2026-10-01T00:00:00Z",
+  ...over,
+});
 const npmDays = Array.from({ length: 31 }, (_, i) => ({ downloads: i, day: date(i) }));
 
 function fakeFetch({ repoPages, onCall = () => { }, fail } = {}) {
@@ -115,6 +126,47 @@ test("gather sends the token to api.github.com only", async () => {
 test("gather rejects HTTP errors and malformed repositories", async () => {
   await assert.rejects(withToken("", () => gather(fakeFetch({ repoPages: twoPages(), fail: /npmjs/ }))), /503/);
   await assert.rejects(withToken("", () => gather(fakeFetch({ repoPages: twoPages(), fail: /contributions/ }))), /503/);
-  const bad = [[{ name: "x", stargazers_count: "5", forks_count: 0, language: null }]];
+  const bad = [[{ ...repo("x", 5), stargazers_count: "5" }]];
   await assert.rejects(withToken("", () => gather(fakeFetch({ repoPages: bad }))), /malformed repo/);
+  for (const over of [{ created_at: "yesterday" }, { fork: "no" }, { archived: undefined }, { description: 5 }]) {
+    await assert.rejects(withToken("", () => gather(fakeFetch({ repoPages: [[repo("y", 1, over)]] }))), /malformed repo/);
+  }
+});
+
+const latestOf = (repoPages) => withToken("", () => gather(fakeFetch({ repoPages }))).then((d) => d.latest);
+
+test("gather picks the newest by creation date, not by push date", async () => {
+  const latest = await latestOf([[
+    repo("old-but-busy", 9, { created_at: "2020-01-01T00:00:00Z", pushed_at: "2026-11-01T00:00:00Z" }),
+    repo("new-quiet", 1, { created_at: "2026-10-01T00:00:00Z", pushed_at: "2026-10-01T00:00:00Z" }),
+  ]]);
+  assert.deepEqual(latest.map((r) => r.name), ["new-quiet", "old-but-busy"]);
+});
+
+test("gather excludes forks, archived repositories and the profile repository", async () => {
+  const latest = await latestOf([[
+    repo("fork", 0, { fork: true, created_at: "2026-10-05T00:00:00Z" }),
+    repo("archive", 0, { archived: true, created_at: "2026-10-04T00:00:00Z" }),
+    repo("Osyna", 0, { created_at: "2026-10-03T00:00:00Z" }),
+    repo("real", 0, { created_at: "2026-10-02T00:00:00Z" }),
+  ]]);
+  assert.deepEqual(latest.map((r) => r.name), ["real"]);
+});
+
+test("gather keeps the four newest across pages with a stable name tie break", async () => {
+  const pages = twoPages().map((page, p) => page.map((r, i) => ({ ...r, created_at: `2023-01-${String(1 + ((i + p) % 28)).padStart(2, "0")}T00:00:00Z` })));
+  pages[1][5] = repo("zeta", 0, { created_at: "2026-02-01T10:00:00Z" });
+  pages[0][50] = repo("beta", 0, { created_at: "2026-02-01T10:00:00Z" });
+  pages[1][0] = repo("alpha", 0, { created_at: "2026-03-01T00:00:00Z" });
+  pages[0][99] = repo("older", 0, { created_at: "2026-01-31T23:59:59Z" });
+  pages[1][19] = repo("oldest", 0, { created_at: "2026-01-01T00:00:00Z" });
+  const latest = await latestOf(pages);
+  assert.deepEqual(latest.map((r) => r.name), ["alpha", "beta", "zeta", "older"]);
+});
+
+test("gather keeps null descriptions and percent-encodes names in urls", async () => {
+  const [r] = await latestOf([[repo("we ird/name?", 2, { description: null, language: null })]]);
+  assert.equal(r.description, null);
+  assert.equal(r.language, null);
+  assert.equal(r.url, "https://github.com/Osyna/we%20ird%2Fname%3F");
 });

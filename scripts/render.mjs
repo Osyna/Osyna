@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { gather } from "./data.mjs";
 import { landscape } from "./art.mjs";
+import { renderGif } from "./gif.mjs";
+import { updateLatest } from "./latest.mjs";
 
 const OUT = new URL("../assets/", import.meta.url);
 const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif";
@@ -40,10 +42,10 @@ function chips(items, x, y, T, size = 13) {
     return chip;
   }).join("");
 }
-function hero(stats, mobile, T) {
+function hero(stats, mobile, T, phase = 0) {
   const W = mobile ? 420 : 1000, H = mobile ? 470 : 340;
   const metrics = [[fmt(stats.followers), "Followers"], [fmt(stats.repos), "Repositories"], [fmt(stats.stars), "Total stars"], [String(stats.sinceYear), "On GitHub since"]];
-  let body = `<defs><clipPath id="hero-clip">${rect(1, 1, W - 2, H - 2, "white", 14)}</clipPath><linearGradient id="hero-shade"><stop stop-color="#06111d"/><stop offset=".54" stop-color="#06111d" stop-opacity=".94"/><stop offset="1" stop-color="#06111d" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#hero-clip)"><svg x="0" y="${mobile ? 110 : 0}" width="${W}" height="340" viewBox="${mobile ? "500 0 500 340" : "0 0 1000 340"}" preserveAspectRatio="xMidYMid slice">${landscape()}</svg>${rect(0, 0, W, H, "url(#hero-shade)", 0)}</g>`;
+  let body = `<defs><clipPath id="hero-clip">${rect(1, 1, W - 2, H - 2, "white", 14)}</clipPath><linearGradient id="hero-shade"><stop stop-color="#06111d"/><stop offset=".54" stop-color="#06111d" stop-opacity=".94"/><stop offset="1" stop-color="#06111d" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#hero-clip)"><svg x="0" y="${mobile ? 110 : 0}" width="${W}" height="340" viewBox="${mobile ? "500 0 500 340" : "0 0 1000 340"}" preserveAspectRatio="xMidYMid slice">${landscape(phase)}</svg>${rect(0, 0, W, H, "url(#hero-shade)", 0)}</g>`;
   body += text(32, 42, "Data · AI · Systems · Open source", mobile ? 14 : 15, "#a6c8db");
   body += text(30, mobile ? 112 : 116, "Osyna", mobile ? 64 : 76, "#f2f8fc", 'font-weight="750" letter-spacing="-2"');
   body += text(32, mobile ? 147 : 153, "Data & AI engineer", mobile ? 22 : 23, "#79d5f5", 'font-weight="600"');
@@ -152,6 +154,8 @@ function currently(mobile, T) {
 }
 async function main() {
   const stats = await gather();
+  const readmePath = new URL("../README.md", import.meta.url);
+  const readme = updateLatest(await readFile(readmePath, "utf8"), stats.latest);
   const files = [];
   for (const [theme, T] of Object.entries(THEMES)) {
     for (const mobile of [false, true]) {
@@ -162,8 +166,15 @@ async function main() {
       for (const p of PROJECTS) files.push([`${p.art}-${suffix}`, project(p, stats, mobile, T)]);
     }
   }
+  for (const mobile of [false, true]) {
+    files.push([`hero${mobile ? "-mobile" : ""}.gif`, await renderGif(
+      (phase) => hero(stats, mobile, THEMES.dark, phase),
+      { width: mobile ? 420 : 1000, height: mobile ? 470 : 340 },
+    )]);
+  }
   await mkdir(OUT, { recursive: true });
   await Promise.all(files.map(([name, content]) => writeFile(new URL(name, OUT), content)));
-  console.log(`Rendered ${files.length} self-contained panels: ${stats.repos} repositories, ${stats.stars} stars, ${stats.calendar.total} contributions, ${stats.downloadsMonth} npm downloads.`);
+  await writeFile(readmePath, readme);
+  console.log(`Rendered ${files.length} panels including two 6-second GIFs, and refreshed ${stats.latest.length} latest projects: ${stats.repos} repositories, ${stats.stars} stars, ${stats.calendar.total} contributions, ${stats.downloadsMonth} npm downloads.`);
 }
 main().catch((error) => { console.error(error); process.exitCode = 1; });

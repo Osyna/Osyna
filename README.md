@@ -1,8 +1,10 @@
 <picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/hero-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/hero-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/hero-light.svg">
-  <img src="./assets/hero-dark.svg" alt="Osyna. Data and AI engineer, open-source creator and tech explorer. Live GitHub followers, repositories and stars." width="100%">
+  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/hero-mobile-light.svg">
+  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="./assets/hero-mobile-dark.svg">
+  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: light)" srcset="./assets/hero-light.svg">
+  <source media="(prefers-reduced-motion: reduce)" srcset="./assets/hero-dark.svg">
+  <source media="(max-width: 600px)" srcset="./assets/hero-mobile.gif">
+  <img src="./assets/hero.gif" alt="Osyna. Animated alpine night sky with drifting aurora. Data and AI engineer, open-source creator, and live GitHub stats." width="100%">
 </picture>
 
 <p align="center">
@@ -11,6 +13,19 @@
   <a href="https://www.linkedin.com/in/irvinheslan">LinkedIn</a> &nbsp; · &nbsp;
   Brussels, Belgium
 </p>
+
+<!-- latest-projects:start -->
+## Latest projects
+
+Newest original repositories, refreshed nightly.
+
+| Project | Description |
+| --- | --- |
+| [CPMAC-Plugins](https://github.com/Osyna/CPMAC-Plugins)<br><sub>Go · Created 2026-11-01 · ★ 0</sub> | — |
+| [Screnerrr](https://github.com/Osyna/Screnerrr)<br><sub>Rust · Created 2026-11-01 · ★ 0</sub> | Native Wayland screenshot annotation with on-device smart shapes |
+| [Serverrr](https://github.com/Osyna/Serverrr)<br><sub>Python · Created 2026-11-01 · ★ 0</sub> | — |
+| [Taix](https://github.com/Osyna/Taix)<br><sub>Rust · Created 2026-09-20 · ★ 0</sub> | Orchestrate AI coding agents on one tmux server: desktop, terminal and phone |
+<!-- latest-projects:end -->
 
 ## Featured projects
 
@@ -123,17 +138,20 @@ Also [QML](https://github.com/Osyna/QML), [AzureBlobStorageExplorer](https://git
 <details>
 <summary>How this profile stays up to date</summary>
 
-The [nightly workflow](./.github/workflows/pulse.yml) refreshes the counters, repository stars and forks, contribution calendar, and npm download chart. The calendar comes from GitHub's public contribution page; downloads come from npm's reported interval, which may lag today. Counts are snapshots, not real-time widgets.
+The [nightly workflow](./.github/workflows/pulse.yml) refreshes the latest original projects (newest by creation date, excluding forks and archived repositories), counters, repository stars and forks, contribution calendar, npm download chart, and animated headers. The calendar comes from GitHub's public contribution page; downloads come from npm's reported interval, which may lag today. Counts are snapshots, not real-time widgets.
 
-The mountain header is drawn in [SVG](./scripts/art.mjs); project cards are text-only. [The renderer](./scripts/render.mjs) produces self-contained dark, light, and mobile layouts using Node.js 22 and no runtime dependencies. The aurora respects reduced-motion preferences. Every panel remains visible without animation.
+The mountain scene is drawn in [SVG](./scripts/art.mjs) and rendered into two looping six-second GIFs, sized for desktop and mobile. The aurora drifts above the peaks, stars shimmer, and mist moves through the valley; text stays still. Browsers requesting reduced motion receive a still SVG instead. Project cards remain text-only.
+
+[The renderer](./scripts/render.mjs) uses Node.js 22 and the pinned development dependency `sharp` for SVG rasterization and GIF encoding. Local rendering also needs Fontconfig and a sans-serif font (`fontconfig fonts-dejavu-core` on Debian/Ubuntu). Published assets need no server or external image host.
 
 To check and refresh locally:
 
 ```sh
+npm ci
 npm test
 npm run render
 ```
 
-An optional `GH_TOKEN` raises the GitHub API rate limit; it is sent only to `api.github.com`. Failed requests or malformed data stop the refresh before assets are written, leaving the published panels intact. If GitHub changes its public calendar markup, the parser may need an update.
+An optional `GH_TOKEN` raises the GitHub API rate limit; it is sent only to `api.github.com`. Data validation, README marker checks, and GIF rendering complete before published files are written. Failed requests or malformed data leave the published panels intact. If GitHub changes its public calendar markup, the parser may need an update.
 
 </details>
