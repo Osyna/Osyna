@@ -1,10 +1,10 @@
 <picture>
-  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/hero-mobile-light.svg">
-  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="./assets/hero-mobile-dark.svg">
-  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: light)" srcset="./assets/hero-light.svg">
-  <source media="(prefers-reduced-motion: reduce)" srcset="./assets/hero-dark.svg">
-  <source media="(max-width: 600px)" srcset="./assets/hero-mobile.gif">
-  <img src="./assets/hero.gif" alt="Osyna. Animated alpine night sky with drifting aurora. Data and AI engineer, open-source creator, and live GitHub stats." width="100%">
+  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/coast-mobile-light.svg">
+  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="./assets/coast-mobile-dark.svg">
+  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: light)" srcset="./assets/coast-light.svg">
+  <source media="(prefers-reduced-motion: reduce)" srcset="./assets/coast-dark.svg">
+  <source media="(max-width: 600px)" srcset="./assets/coast-mobile.gif">
+  <img src="./assets/coast.gif" alt="Osyna. Photographic Brittany coast with the Petit Minou lighthouse and animated Atlantic water at blue hour. Data and AI engineer, open-source creator, and live GitHub stats." width="100%">
 </picture>
 
 <p align="center">
@@ -148,9 +148,11 @@ Also [QML](https://github.com/Osyna/QML), [AzureBlobStorageExplorer](https://git
 
 The [nightly workflow](./.github/workflows/pulse.yml) refreshes the latest original projects (newest by creation date, excluding forks and archived repositories), counters, repository stars and forks, contribution calendar, npm download chart, and animated headers. The calendar comes from GitHub's public contribution page; downloads come from npm's reported interval, which may lag today. Counts are snapshots, not real-time widgets.
 
-The mountain scene is drawn in [SVG](./scripts/art.mjs) and rendered into two looping six-second GIFs, sized for desktop and mobile. The aurora drifts above the peaks, stars shimmer, and mist moves through the valley; text stays still. Browsers requesting reduced motion receive a still SVG instead. Latest and featured projects use linked, text-only cards arranged without HTML tables, so GitHub adds no table borders.
+The header uses a real photograph of the Petit Minou lighthouse at Plouzané, Brittany, rendered into two looping six-second cinemagraph GIFs for desktop and mobile. Subtle water displacement and beacon light animate the photograph; the lighthouse, headland, and text stay still. Browsers requesting reduced motion receive a still SVG instead. Latest and featured projects use linked, text-only cards arranged without HTML tables, so GitHub adds no table borders.
 
 [The renderer](./scripts/render.mjs) uses Node.js 22 and the pinned development dependency `sharp` for SVG rasterization and GIF encoding. Local rendering also needs Fontconfig and a sans-serif font (`fontconfig fonts-dejavu-core` on Debian/Ubuntu). Published assets need no server or external image host.
+
+Coastal photograph: [William Bout, “Phare du Petit Minou, Plouzané, France” (2016)](https://commons.wikimedia.org/wiki/File:Phare_du_Petit_Minou,_Plouzan%C3%A9,_France_(Unsplash).jpg), [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). The [local source image](./assets/brittany-petit-minou.jpg) is resized and recompressed; the headers add cropping, a readability gradient, typography, and water/beacon animation. The animation is an edited photograph, not recorded video.
 
 To check and refresh locally:
 

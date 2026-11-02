@@ -8,10 +8,10 @@ const raster = (phase, region) => {
   return (region ? image.extract(region) : image).raw().toBuffer();
 };
 
-test("mountain animation loops exactly, moves the sky, and leaves the peaks steady", async () => {
+test("coastal animation loops exactly, moves the water, and leaves the lighthouse steady", async () => {
   assert.deepEqual(await raster(1), await raster(0));
-  const sky = { left: 650, top: 10, width: 160, height: 35 };
-  assert.notDeepEqual(await raster(0.25, sky), await raster(0, sky));
-  const peak = { left: 750, top: 130, width: 40, height: 30 };
-  assert.deepEqual(await raster(0.25, peak), await raster(0, peak));
+  const water = { left: 920, top: 180, width: 65, height: 45 };
+  assert.notDeepEqual(await raster(0.25, water), await raster(0, water));
+  const lighthouse = { left: 785, top: 155, width: 25, height: 50 };
+  assert.deepEqual(await raster(0.25, lighthouse), await raster(0, lighthouse));
 });

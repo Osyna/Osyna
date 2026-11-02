@@ -45,7 +45,7 @@ function chips(items, x, y, T, size = 13) {
 function hero(stats, mobile, T, phase = 0) {
   const W = mobile ? 420 : 1000, H = mobile ? 470 : 340;
   const metrics = [[fmt(stats.followers), "Followers"], [fmt(stats.repos), "Repositories"], [fmt(stats.stars), "Total stars"], [String(stats.sinceYear), "On GitHub since"]];
-  let body = `<defs><clipPath id="hero-clip">${rect(1, 1, W - 2, H - 2, "white", 14)}</clipPath><linearGradient id="hero-shade"><stop stop-color="#06111d"/><stop offset=".54" stop-color="#06111d" stop-opacity=".94"/><stop offset="1" stop-color="#06111d" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#hero-clip)"><svg x="0" y="${mobile ? 110 : 0}" width="${W}" height="340" viewBox="${mobile ? "500 0 500 340" : "0 0 1000 340"}" preserveAspectRatio="xMidYMid slice">${landscape(phase)}</svg>${rect(0, 0, W, H, "url(#hero-shade)", 0)}</g>`;
+  let body = `<defs><clipPath id="hero-clip">${rect(1, 1, W - 2, H - 2, "white", 14)}</clipPath><linearGradient id="hero-shade"><stop stop-color="#06111d"/><stop offset=".54" stop-color="#06111d" stop-opacity=".94"/><stop offset="1" stop-color="#06111d" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#hero-clip)"><svg x="0" y="${mobile ? 160 : 0}" width="${W}" height="340" viewBox="${mobile ? "410 0 500 340" : "0 0 1000 340"}" preserveAspectRatio="xMidYMid slice">${landscape(phase)}</svg>${rect(0, 0, W, H, "url(#hero-shade)", 0)}</g>`;
   body += text(32, 42, "Data · AI · Systems · Open source", mobile ? 14 : 15, "#a6c8db");
   body += text(30, mobile ? 112 : 116, "Osyna", mobile ? 64 : 76, "#f2f8fc", 'font-weight="750" letter-spacing="-2"');
   body += text(32, mobile ? 147 : 153, "Data & AI engineer", mobile ? 22 : 23, "#79d5f5", 'font-weight="600"');
@@ -55,6 +55,7 @@ function hero(stats, mobile, T, phase = 0) {
   if (!mobile) {
     body += text(962, 45, "Better data.", 18, "#b8f0d8", 'text-anchor="end" font-family="Georgia, serif" font-style="italic"');
     body += text(962, 69, "Brighter possibilities.", 18, "#b8f0d8", 'text-anchor="end" font-family="Georgia, serif" font-style="italic"');
+    body += text(970, 323, "Petit Minou · Bretagne", 12, "#c6d7e4", 'text-anchor="end"');
   }
   metrics.forEach(([value, label], i) => {
     const x = mobile ? 32 + (i % 2) * 196 : 32 + i * 156;
@@ -171,7 +172,7 @@ async function main() {
   for (const [theme, T] of Object.entries(THEMES)) {
     for (const mobile of [false, true]) {
       const suffix = `${mobile ? "mobile-" : ""}${theme}.svg`;
-      for (const [name, render] of [["hero", hero], ["activity", activity], ["stack", (_, m, t) => stack(m, t)], ["currently", (_, m, t) => currently(m, t)]]) {
+      for (const [name, render] of [["coast", hero], ["activity", activity], ["stack", (_, m, t) => stack(m, t)], ["currently", (_, m, t) => currently(m, t)]]) {
         files.push([`${name}-${suffix}`, render(stats, mobile, T)]);
       }
       for (const p of PROJECTS) files.push([`${p.art}-${suffix}`, project(p, stats, mobile, T)]);
@@ -179,7 +180,7 @@ async function main() {
     }
   }
   for (const mobile of [false, true]) {
-    files.push([`hero${mobile ? "-mobile" : ""}.gif`, await renderGif(
+    files.push([`coast${mobile ? "-mobile" : ""}.gif`, await renderGif(
       (phase) => hero(stats, mobile, THEMES.dark, phase),
       { width: mobile ? 420 : 1000, height: mobile ? 470 : 340 },
     )]);
