@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { mkdir, writeFile } from "node:fs/promises";
 import { gather } from "./data.mjs";
-import { landscape, projectArt } from "./art.mjs";
+import { landscape } from "./art.mjs";
 
 const OUT = new URL("../assets/", import.meta.url);
 const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif";
@@ -63,19 +63,15 @@ function hero(stats, mobile, T) {
   return svg(W, H, `Osyna. Data and AI engineer, open-source creator in Brussels. ${stats.repos} public repositories, ${stats.stars} stars, ${stats.followers} followers.`, body, { ...T, bg: "#06111d", border: "#2b4757" });
 }
 function project(project, stats, mobile, T) {
-  const W = mobile ? 320 : 480, H = mobile ? 430 : 260;
+  const W = mobile ? 320 : 480, H = mobile ? 360 : 240;
   const repo = stats.projects[project.name];
   if (!repo) throw new Error(`Featured repository not returned by GitHub: ${project.name}`);
-  let body = `<defs><clipPath id="card-clip">${rect(1, 1, W - 2, H - 2, "white", 14)}</clipPath><linearGradient id="art-fade"><stop stop-color="${T.bg}"/><stop offset="1" stop-color="${T.bg}" stop-opacity="0"/></linearGradient></defs>`;
-  body += `<g clip-path="url(#card-clip)"><svg x="${mobile ? 180 : 330}" y="${mobile ? 55 : 0}" width="${mobile ? 140 : 150}" height="${mobile ? 110 : H}" viewBox="0 0 160 200" preserveAspectRatio="xMidYMid ${mobile ? "meet" : "slice"}">${projectArt(project.art)}</svg>${mobile ? "" : rect(324, 0, 60, H, "url(#art-fade)", 0)}</g>`;
-  body += rect(22, 22, 4, 24, project.color, 2) + text(36, 42, project.name, mobile ? 24 : 25, T.blue, 'font-weight="650"');
-  if (mobile) {
-    wrap(project.category, 17).forEach((line, i) => { body += text(22, 91 + i * 23, line, 16, T.muted); });
-  } else body += text(22, 70, project.category, 13, T.muted);
-  const lines = wrap(project.description, mobile ? 24 : 37);
-  lines.forEach((line, i) => { body += text(22, (mobile ? 188 : 102) + i * (mobile ? 26 : 23), line, mobile ? 22 : 16, T.ink); });
-  body += chips(project.tags, 22, mobile ? 377 : 212, T, mobile ? 16 : 12);
-  body += text(22, H - 20, `★ ${fmt(repo.stars)}`, 16, T.blue) + text(105, H - 20, `⑂ ${fmt(repo.forks)}`, 16, T.muted) + text(mobile ? 292 : 310, H - 20, "↗", 19, T.blue, 'text-anchor="end"');
+  let body = rect(22, 22, 4, 24, project.color, 2) + text(36, 42, project.name, mobile ? 24 : 25, T.blue, 'font-weight="650"');
+  body += text(22, mobile ? 80 : 70, project.category, mobile ? 16 : 13, T.muted);
+  const lines = wrap(project.description, mobile ? 24 : 52);
+  lines.forEach((line, i) => { body += text(22, (mobile ? 118 : 102) + i * (mobile ? 26 : 23), line, mobile ? 22 : 16, T.ink); });
+  body += chips(project.tags, 22, mobile ? 318 : 196, T, mobile ? 16 : 12);
+  body += text(22, H - 20, `★ ${fmt(repo.stars)}`, 16, T.blue) + text(105, H - 20, `⑂ ${fmt(repo.forks)}`, 16, T.muted) + text(W - 22, H - 20, "↗", 19, T.blue, 'text-anchor="end"');
   return svg(W, H, `${project.name}: ${project.description} ${repo.stars} stars, ${repo.forks} forks.`, body, T);
 }
 function sparkline(series, x, y, w, h, T) {

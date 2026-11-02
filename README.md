@@ -125,7 +125,7 @@ Also [QML](https://github.com/Osyna/QML), [AzureBlobStorageExplorer](https://git
 
 The [nightly workflow](./.github/workflows/pulse.yml) refreshes the counters, repository stars and forks, contribution calendar, and npm download chart. The calendar comes from GitHub's public contribution page; downloads come from npm's reported interval, which may lag today. Counts are snapshots, not real-time widgets.
 
-All artwork is drawn in [SVG](./scripts/art.mjs). [The renderer](./scripts/render.mjs) produces self-contained dark, light, and mobile layouts using Node.js 22 and no runtime dependencies. The aurora respects reduced-motion preferences. Every panel remains visible without animation.
+The mountain header is drawn in [SVG](./scripts/art.mjs); project cards are text-only. [The renderer](./scripts/render.mjs) produces self-contained dark, light, and mobile layouts using Node.js 22 and no runtime dependencies. The aurora respects reduced-motion preferences. Every panel remains visible without animation.
 
 To check and refresh locally:
 
