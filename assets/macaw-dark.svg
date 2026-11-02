@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="260" viewBox="0 0 480 260" role="img" aria-labelledby="title"><title id="title">Macaw: Speech-to-text for Linux and Windows. Swap inference engines at runtime, with GPU acceleration and local processing. 1 stars, 0 forks.</title><g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif"><rect x="1" y="1" width="478" height="258" rx="14" fill="#09131d" stroke="#293e4d"/><defs><clipPath id="card-clip"><rect x="1" y="1" width="478" height="258" rx="14" fill="white" /></clipPath><linearGradient id="art-fade"><stop stop-color="#09131d"/><stop offset="1" stop-color="#09131d" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#card-clip)"><svg x="330" y="0" width="150" height="260" viewBox="0 0 160 200" preserveAspectRatio="xMidYMid slice"><defs>
+<linearGradient id="macaw-bg" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#0e4a42"/><stop offset="0.55" stop-color="#0a2f2d"/><stop offset="1" stop-color="#051716"/></linearGradient>
+<linearGradient id="macaw-shaft" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8fff0" stop-opacity="0.28"/><stop offset="1" stop-color="#d8fff0" stop-opacity="0"/></linearGradient>
+<linearGradient id="macaw-chest" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe27a"/><stop offset="1" stop-color="#f29b2a"/></linearGradient>
+<linearGradient id="macaw-wing" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#1f4fd0"/><stop offset="0.6" stop-color="#1d7fe0"/><stop offset="1" stop-color="#22c8d8"/></linearGradient>
+<linearGradient id="macaw-crown" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#27d6c8"/><stop offset="1" stop-color="#1590d8"/></linearGradient>
+<linearGradient id="macaw-beak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a4f5a"/><stop offset="0.5" stop-color="#23262d"/><stop offset="1" stop-color="#0d0f13"/></linearGradient>
+<linearGradient id="macaw-branch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a5232"/><stop offset="1" stop-color="#3b2515"/></linearGradient>
+<filter id="macaw-blur" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="2.5"/></filter>
+</defs>
+<rect width="160" height="200" fill="url(#macaw-bg)"/>
+<path d="M16 0L58 0L112 200L36 200Z" fill="url(#macaw-shaft)"/>
+<path d="M70 0L90 0L150 200L124 200Z" fill="url(#macaw-shaft)" opacity=".6"/>
+<g transform="translate(-4 30) rotate(30)"><path d="M0 0Q28 -14 70 0Q28 14 0 0Z" fill="#14513c"/><path d="M2 0L67 0" stroke="#bff5c8" stroke-width=".6" opacity=".3"/></g><g transform="translate(160 24) rotate(150)"><path d="M0 0Q29.6 -15 74 0Q29.6 15 0 0Z" fill="#12493a"/><path d="M2 0L71 0" stroke="#bff5c8" stroke-width=".6" opacity=".3"/></g>
+<g transform="translate(-6 100) rotate(-20)"><path d="M0 0Q26.4 -13 66 0Q26.4 13 0 0Z" fill="#1f6b4a"/><path d="M2 0L63 0" stroke="#bff5c8" stroke-width=".6" opacity=".3"/></g><g transform="translate(166 96) rotate(200)"><path d="M0 0Q28 -14 70 0Q28 14 0 0Z" fill="#1d6a4c"/><path d="M2 0L67 0" stroke="#bff5c8" stroke-width=".6" opacity=".3"/></g>
+<g transform="translate(-4 190) rotate(-50)"><path d="M0 0Q25.6 -12 64 0Q25.6 12 0 0Z" fill="#2a8a5a"/><path d="M2 0L61 0" stroke="#bff5c8" stroke-width=".6" opacity=".3"/></g><g transform="translate(166 196) rotate(235)"><path d="M0 0Q24.8 -12 62 0Q24.8 12 0 0Z" fill="#26805a"/><path d="M2 0L59 0" stroke="#bff5c8" stroke-width=".6" opacity=".3"/></g>
+<g transform="translate(10 -4) rotate(70)"><path d="M0 0Q24 -11 60 0Q24 11 0 0Z" fill="#0f3f30"/><path d="M2 0L57 0" stroke="#bff5c8" stroke-width=".6" opacity=".3"/></g><g transform="translate(150 -4) rotate(110)"><path d="M0 0Q23.2 -11 58 0Q23.2 11 0 0Z" fill="#0f3f30"/><path d="M2 0L55 0" stroke="#bff5c8" stroke-width=".6" opacity=".3"/></g>
+<path d="M138 0Q126 30 136 62" fill="none" stroke="#2f7a50" stroke-width="1.5"/>
+<g transform="translate(28 74)"><g fill="#ff6a8a"><ellipse cx="0" cy="-7" rx="5" ry="7"/><ellipse cx="0" cy="-7" rx="5" ry="7" transform="rotate(72)"/><ellipse cx="0" cy="-7" rx="5" ry="7" transform="rotate(144)"/><ellipse cx="0" cy="-7" rx="5" ry="7" transform="rotate(216)"/><ellipse cx="0" cy="-7" rx="5" ry="7" transform="rotate(288)"/></g><circle r="3" fill="#ffd34d"/><circle r="1.4" fill="#d6431f"/></g>
+<g fill="#d8fff0"><circle cx="46" cy="20" r="1.4" opacity=".6"/><circle cx="126" cy="40" r="1.2" opacity=".5"/><circle cx="30" cy="124" r="1.4" opacity=".5"/><circle cx="132" cy="112" r="1.6" opacity=".55"/></g>
+<path d="M74 118Q58 160 54 198Q70 192 82 132Z" fill="#1a49b8"/>
+<path d="M92 120Q104 158 102 196Q86 190 84 132Z" fill="#1a49b8"/>
+<path d="M78 120Q70 160 74 199Q88 192 88 132Z" fill="#22c3d6"/>
+<path d="M78 124Q72 160 74 196M89 124Q90 160 100 192M72 124Q60 160 56 194" fill="none" stroke="#0e2d7a" stroke-width=".8" opacity=".6"/>
+<path d="M-4 142Q50 134 100 140T164 134" fill="none" stroke="url(#macaw-branch)" stroke-width="9" stroke-linecap="round"/>
+<path d="M-4 139Q50 131 100 137T164 131" fill="none" stroke="#a37548" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
+<path d="M30 146Q22 156 28 164M120 142Q130 152 124 162" fill="none" stroke="#2f7a50" stroke-width="1.5"/>
+<path d="M80 40Q108 44 104 92Q102 124 86 138Q64 134 58 100Q54 56 80 40Z" fill="url(#macaw-chest)"/>
+<path d="M84 60Q116 66 110 112Q106 132 94 140Q82 120 80 98Z" fill="url(#macaw-wing)"/>
+<path d="M89 84Q99 110 96 134M97 78Q106 104 102 126" fill="none" stroke="#8cf0f8" stroke-width="1" opacity=".55"/>
+<path d="M88 66Q96 62 104 70M86 76Q96 72 106 80" fill="none" stroke="#6ee7f0" stroke-width="1.2" opacity=".6"/>
+<path d="M62 94Q60 112 68 128" fill="none" stroke="#fff3b0" stroke-width="1.6" opacity=".5" stroke-linecap="round"/>
+<circle cx="78" cy="50" r="22" fill="url(#macaw-crown)"/>
+<path d="M62 32Q74 22 90 30" fill="none" stroke="#8cf0f8" stroke-width="1.6" opacity=".55" stroke-linecap="round"/>
+<ellipse cx="68" cy="54" rx="13" ry="12" fill="#fbf6ea"/>
+<path d="M58 52Q66 49 76 52M58 58Q67 55 77 58M62 64Q68 62 74 64" fill="none" stroke="#3a3f4a" stroke-width=".7" opacity=".6"/>
+<circle cx="72" cy="56" r="3" fill="#ffb3a0" opacity=".4"/>
+<circle cx="71" cy="49" r="4.6" fill="#ffe27a"/><circle cx="71" cy="49" r="2.6" fill="#0e1014"/><circle cx="72" cy="48" r=".9" fill="#fff"/>
+<path d="M60 42Q37 44 41 68Q50 62 59 60Z" fill="url(#macaw-beak)"/>
+<path d="M60 43Q44 44 43 56" fill="none" stroke="#7b8190" stroke-width="1" opacity=".6" stroke-linecap="round"/>
+<path d="M52 63Q53 74 64 69L60 60Z" fill="#0e1014"/>
+<g stroke="#8d8f95" stroke-width="2.6" stroke-linecap="round" fill="none"><path d="M70 134L66 143M70 134L72 144M70 134L76 142"/><path d="M90 134L86 144M90 134L92 144M90 134L96 142"/></g>
+<g filter="url(#macaw-blur)" fill="#d8fff0" opacity=".5"><circle cx="46" cy="20" r="3"/><circle cx="132" cy="112" r="3"/></g></svg><rect x="324" y="0" width="60" height="260" rx="0" fill="url(#art-fade)" /></g><rect x="22" y="22" width="4" height="24" rx="2" fill="#6bcbf1" /><text x="36" y="42" font-size="25" fill="#69c9fa" font-weight="650">Macaw</text><text x="22" y="70" font-size="13" fill="#a4b8c8" >Local-first AI</text><text x="22" y="102" font-size="16" fill="#ecf4fa" >Speech-to-text for Linux and Windows.</text><text x="22" y="125" font-size="16" fill="#ecf4fa" >Swap inference engines at runtime,</text><text x="22" y="148" font-size="16" fill="#ecf4fa" >with GPU acceleration and local</text><text x="22" y="171" font-size="16" fill="#ecf4fa" >processing.</text><rect x="22" y="195" width="112.08000000000001" height="26" rx="5" fill="#192e3e" /><text x="31" y="212" font-size="12" fill="#ecf4fa" >Speech-to-text</text><rect x="141.08" y="195" width="44.88" height="26" rx="5" fill="#192e3e" /><text x="150.08" y="212" font-size="12" fill="#ecf4fa" >CUDA</text><rect x="192.96" y="195" width="58.32000000000001" height="26" rx="5" fill="#192e3e" /><text x="201.96" y="212" font-size="12" fill="#ecf4fa" >Python</text><text x="22" y="240" font-size="16" fill="#69c9fa" >★ 1</text><text x="105" y="240" font-size="16" fill="#a4b8c8" >⑂ 0</text><text x="310" y="240" font-size="19" fill="#69c9fa" text-anchor="end">↗</text></g></svg>

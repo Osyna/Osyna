@@ -1,8 +1,6 @@
 name: pulse
 
-# Re-renders the profile hero (assets/hero-{dark,light}.svg) from live
-# GitHub + npm data and commits it when it changes. No third-party
-# stat-card/render service in the loop — see scripts/render.mjs.
+# Refreshes the illustrated profile panels from public GitHub and npm data.
 
 on:
   schedule:
@@ -11,7 +9,8 @@ on:
   push:
     branches: [main]
     paths:
-      - scripts/render.mjs
+      - scripts/**
+      - package.json
       - .github/workflows/pulse.yml
 
 permissions:
@@ -30,6 +29,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+
+      - name: check data boundaries
+        run: npm test
 
       - name: render
         run: node scripts/render.mjs

@@ -2,8 +2,9 @@
   "name": "osyna-profile",
   "private": true,
   "type": "module",
-  "description": "Self-rendered GitHub profile hero — live GitHub + npm data, zero dependencies.",
+  "description": "Illustrated GitHub profile with nightly GitHub and npm data, zero runtime dependencies.",
   "scripts": {
-    "render": "node scripts/render.mjs"
+    "render": "node scripts/render.mjs",
+    "test": "node --test scripts/*.test.mjs"
   }
 }

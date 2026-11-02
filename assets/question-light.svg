@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="260" viewBox="0 0 480 260" role="img" aria-labelledby="title"><title id="title">QuestionAir: Turn source material into multiple-choice assessments. LLaMA via Ollama, keyword extraction and French quality checks. 0 stars, 0 forks.</title><g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif"><rect x="1" y="1" width="478" height="258" rx="14" fill="#f5f9fc" stroke="#c5d8e4"/><defs><clipPath id="card-clip"><rect x="1" y="1" width="478" height="258" rx="14" fill="white" /></clipPath><linearGradient id="art-fade"><stop stop-color="#f5f9fc"/><stop offset="1" stop-color="#f5f9fc" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#card-clip)"><svg x="330" y="0" width="150" height="260" viewBox="0 0 160 200" preserveAspectRatio="xMidYMid slice"><defs>
+<linearGradient id="question-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1445"/><stop offset="0.5" stop-color="#2d1b69"/><stop offset="1" stop-color="#0d0a28"/></linearGradient>
+<radialGradient id="question-halo" cx="0.5" cy="0.33" r="0.5"><stop offset="0" stop-color="#ffb347" stop-opacity="0.6"/><stop offset="0.5" stop-color="#ff7aa8" stop-opacity="0.18"/><stop offset="1" stop-color="#ff7aa8" stop-opacity="0"/></radialGradient>
+<linearGradient id="question-mark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffbd0"/><stop offset="1" stop-color="#ffb347"/></linearGradient>
+<linearGradient id="question-beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a" stop-opacity="0.35"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></linearGradient>
+<linearGradient id="question-b1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2bb5ad"/><stop offset="1" stop-color="#12625f"/></linearGradient>
+<linearGradient id="question-b2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0a03a"/><stop offset="1" stop-color="#b3501f"/></linearGradient>
+<linearGradient id="question-b3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0568d"/><stop offset="1" stop-color="#7a2a9a"/></linearGradient>
+<filter id="question-blur" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<rect width="160" height="200" fill="url(#question-bg)"/>
+<rect width="160" height="200" fill="url(#question-halo)"/>
+<ellipse cx="80" cy="56" rx="56" ry="15" transform="rotate(-14 80 56)" fill="none" stroke="#a89cff" stroke-width="1" stroke-dasharray="2 5" opacity=".45"/>
+<path d="M62 100L98 100L130 150L30 150Z" fill="url(#question-beam)"/>
+<ellipse cx="80" cy="126" rx="50" ry="12" fill="#ffb347" opacity=".55" filter="url(#question-blur)"/>
+<g transform="translate(12 30) scale(.85)"><g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M60 44C60 26 72 18 82 18C96 18 106 27 106 40C106 52 96 56 88 62C82 66 80 70 80 78" stroke="#ffb347" stroke-width="18" opacity=".6" filter="url(#question-blur)"/>
+<path d="M60 44C60 26 72 18 82 18C96 18 106 27 106 40C106 52 96 56 88 62C82 66 80 70 80 78" stroke="url(#question-mark)" stroke-width="11"/>
+</g>
+<circle cx="80" cy="96" r="9" fill="#ffb347" opacity=".6" filter="url(#question-blur)"/>
+<circle cx="80" cy="96" r="6.5" fill="#fff3b0"/></g>
+<path transform="translate(30 30)" d="M0 -6Q0 0 6 0Q0 0 0 6Q0 0 -6 0Q0 0 0 -6Z" fill="#fff3b0" opacity="0.9"/><path transform="translate(134 20)" d="M0 -4.5Q0 0 4.5 0Q0 0 0 4.5Q0 0 -4.5 0Q0 0 0 -4.5Z" fill="#ffd1e6" opacity="0.85"/><path transform="translate(142 84)" d="M0 -6Q0 0 6 0Q0 0 0 6Q0 0 -6 0Q0 0 0 -6Z" fill="#fff3b0" opacity="0.8"/><path transform="translate(20 92)" d="M0 -4Q0 0 4 0Q0 0 0 4Q0 0 -4 0Q0 0 0 -4Z" fill="#c6bbff" opacity="0.8"/><path transform="translate(120 112)" d="M0 -3Q0 0 3 0Q0 0 0 3Q0 0 -3 0Q0 0 0 -3Z" fill="#fff" opacity="0.7"/>
+<g fill="#fff" opacity=".55"><circle cx="14" cy="60" r="1"/><circle cx="150" cy="50" r="1"/><circle cx="48" cy="14" r="1"/><circle cx="108" cy="8" r="1.2"/><circle cx="10" cy="120" r="1"/><circle cx="150" cy="130" r="1"/></g>
+<ellipse cx="80" cy="192" rx="68" ry="6" fill="#000" opacity=".4"/>
+<g transform="rotate(0 76 179)">
+<rect x="20" y="168" width="112" height="22" rx="3" fill="url(#question-b1)"/>
+<rect x="130" y="170.5" width="8" height="17" rx="1.5" fill="#f4e9cf"/>
+<path d="M133 175H139M133 179H139M133 183H139" stroke="#bda97d" stroke-width=".7"/>
+<path d="M30 168V190M34 168V190M118 168V190M122 168V190" stroke="#ffe9a0" stroke-width="1.1" opacity=".75"/>
+<rect x="62" y="176" width="28" height="6" rx="2" fill="#fff4d6" opacity=".78"/>
+<path d="M23 169.5H129" stroke="#fff" stroke-width="1" opacity=".3"/>
+<path d="M23 188.5H129" stroke="#000" stroke-width="1.4" opacity=".25"/></g>
+<g transform="rotate(0 78 157)">
+<rect x="30" y="146" width="96" height="22" rx="3" fill="url(#question-b2)"/>
+<rect x="124" y="148.5" width="8" height="17" rx="1.5" fill="#f4e9cf"/>
+<path d="M127 153H133M127 157H133M127 161H133" stroke="#bda97d" stroke-width=".7"/>
+<path d="M40 146V168M44 146V168M112 146V168M116 146V168" stroke="#ffe9a0" stroke-width="1.1" opacity=".75"/>
+<rect x="64" y="154" width="28" height="6" rx="2" fill="#fff4d6" opacity=".78"/>
+<path d="M33 147.5H123" stroke="#fff" stroke-width="1" opacity=".3"/>
+<path d="M33 166.5H123" stroke="#000" stroke-width="1.4" opacity=".25"/></g>
+<g transform="rotate(-4 79 136)">
+<rect x="40" y="126" width="78" height="20" rx="3" fill="url(#question-b3)"/>
+<rect x="116" y="128.5" width="8" height="15" rx="1.5" fill="#f4e9cf"/>
+<path d="M119 133H125M119 136H125M119 139H125" stroke="#bda97d" stroke-width=".7"/>
+<path d="M50 126V146M54 126V146M104 126V146M108 126V146" stroke="#ffe9a0" stroke-width="1.1" opacity=".75"/>
+<rect x="65" y="133" width="28" height="6" rx="2" fill="#fff4d6" opacity=".78"/>
+<path d="M43 127.5H115" stroke="#fff" stroke-width="1" opacity=".3"/>
+<path d="M43 144.5H115" stroke="#000" stroke-width="1.4" opacity=".25"/></g></svg><rect x="324" y="0" width="60" height="260" rx="0" fill="url(#art-fade)" /></g><rect x="22" y="22" width="4" height="24" rx="2" fill="#eac07d" /><text x="36" y="42" font-size="25" fill="#096c9d" font-weight="650">QuestionAir</text><text x="22" y="70" font-size="13" fill="#4c6576" >Learning tools</text><text x="22" y="102" font-size="16" fill="#152e40" >Turn source material into</text><text x="22" y="125" font-size="16" fill="#152e40" >multiple-choice assessments. LLaMA</text><text x="22" y="148" font-size="16" fill="#152e40" >via Ollama, keyword extraction and</text><text x="22" y="171" font-size="16" fill="#152e40" >French quality checks.</text><rect x="22" y="195" width="38.160000000000004" height="26" rx="5" fill="#e0edf5" /><text x="31" y="212" font-size="12" fill="#152e40" >LLM</text><rect x="67.16" y="195" width="78.48" height="26" rx="5" fill="#e0edf5" /><text x="76.16" y="212" font-size="12" fill="#152e40" >Education</text><rect x="152.64" y="195" width="38.160000000000004" height="26" rx="5" fill="#e0edf5" /><text x="161.64" y="212" font-size="12" fill="#152e40" >NLP</text><text x="22" y="240" font-size="16" fill="#096c9d" >★ 0</text><text x="105" y="240" font-size="16" fill="#4c6576" >⑂ 0</text><text x="310" y="240" font-size="19" fill="#096c9d" text-anchor="end">↗</text></g></svg>
