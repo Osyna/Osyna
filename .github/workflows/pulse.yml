@@ -12,7 +12,6 @@ on:
       - scripts/**
       - package.json
       - package-lock.json
-      - assets/brittany-petit-minou.jpg
       - .github/workflows/pulse.yml
 
 permissions:
