@@ -64,15 +64,22 @@ function hero(stats, mobile, T, phase = 0) {
   if (mobile) body += text(32, 447, "Freelance · Brussels, Belgium", 14, "#a6c8db");
   return svg(W, H, `Osyna. Data and AI engineer, open-source creator in Brussels. ${stats.repos} public repositories, ${stats.stars} stars, ${stats.followers} followers.`, body, { ...T, bg: "#06111d", border: "#2b4757" });
 }
-function project(project, stats, mobile, T) {
-  const W = mobile ? 320 : 480, H = mobile ? 360 : 240;
+function project(project, stats, mobile, T, latest = false) {
+  const W = mobile ? 320 : 480, H = latest ? (mobile ? 300 : 200) : (mobile ? 360 : 240);
   const repo = stats.projects[project.name];
-  if (!repo) throw new Error(`Featured repository not returned by GitHub: ${project.name}`);
-  let body = rect(22, 22, 4, 24, project.color, 2) + text(36, 42, project.name, mobile ? 24 : 25, T.blue, 'font-weight="650"');
+  if (!repo) throw new Error(`Repository not returned by GitHub: ${project.name}`);
+  const nameLimit = mobile ? 19 : 29;
+  const name = project.name.length > nameLimit ? `${project.name.slice(0, nameLimit - 1)}…` : project.name;
+  let body = rect(22, 22, 4, 24, project.color, 2) + text(36, 42, name, mobile ? 24 : 25, T.blue, 'font-weight="650"');
   body += text(22, mobile ? 80 : 70, project.category, mobile ? 16 : 13, T.muted);
-  const lines = wrap(project.description, mobile ? 24 : 52);
-  lines.forEach((line, i) => { body += text(22, (mobile ? 118 : 102) + i * (mobile ? 26 : 23), line, mobile ? 22 : 16, T.ink); });
-  body += chips(project.tags, 22, mobile ? 318 : 196, T, mobile ? 16 : 12);
+  const columns = mobile ? 24 : 52, maxLines = latest ? (mobile ? 5 : 2) : (mobile ? 6 : 3);
+  const lines = wrap(project.description, columns);
+  lines.slice(0, maxLines).forEach((line, i) => {
+    const truncated = line.length > columns || (i === maxLines - 1 && lines.length > maxLines);
+    const summary = truncated ? `${line.slice(0, columns - 1).trimEnd()}…` : line;
+    body += text(22, (mobile ? 118 : 102) + i * (mobile ? 26 : 23), summary, mobile ? 22 : 16, T.ink);
+  });
+  body += chips(project.tags, 22, latest ? H - 44 : (mobile ? 318 : 196), T, mobile ? 16 : 12);
   body += text(22, H - 20, `★ ${fmt(repo.stars)}`, 16, T.blue) + text(105, H - 20, `⑂ ${fmt(repo.forks)}`, 16, T.muted) + text(W - 22, H - 20, "↗", 19, T.blue, 'text-anchor="end"');
   return svg(W, H, `${project.name}: ${project.description} ${repo.stars} stars, ${repo.forks} forks.`, body, T);
 }
@@ -156,6 +163,10 @@ async function main() {
   const stats = await gather();
   const readmePath = new URL("../README.md", import.meta.url);
   const readme = updateLatest(await readFile(readmePath, "utf8"), stats.latest);
+  const latest = stats.latest.map((p) => ({
+    ...p, description: p.description ?? "", category: `Created ${p.createdAt}`,
+    tags: p.language ? [p.language] : [], color: "#76e3b0",
+  }));
   const files = [];
   for (const [theme, T] of Object.entries(THEMES)) {
     for (const mobile of [false, true]) {
@@ -164,6 +175,7 @@ async function main() {
         files.push([`${name}-${suffix}`, render(stats, mobile, T)]);
       }
       for (const p of PROJECTS) files.push([`${p.art}-${suffix}`, project(p, stats, mobile, T)]);
+      latest.forEach((p, i) => files.push([`latest-${i + 1}-${suffix}`, project(p, stats, mobile, T, true)]));
     }
   }
   for (const mobile of [false, true]) {

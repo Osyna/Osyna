@@ -19,84 +19,92 @@
 
 Newest original repositories, refreshed nightly.
 
-| Project | Description |
-| --- | --- |
-| [CPMAC-Plugins](https://github.com/Osyna/CPMAC-Plugins)<br><sub>Go · Created 2026-11-01 · ★ 0</sub> | — |
-| [Screnerrr](https://github.com/Osyna/Screnerrr)<br><sub>Rust · Created 2026-11-01 · ★ 0</sub> | Native Wayland screenshot annotation with on-device smart shapes |
-| [Serverrr](https://github.com/Osyna/Serverrr)<br><sub>Python · Created 2026-11-01 · ★ 0</sub> | — |
-| [Taix](https://github.com/Osyna/Taix)<br><sub>Rust · Created 2026-09-20 · ★ 0</sub> | Orchestrate AI coding agents on one tmux server: desktop, terminal and phone |
+<p>
+<a href="https://github.com/Osyna/CPMAC-Plugins"><picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-1-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/latest-1-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/latest-1-light.svg">
+  <img src="./assets/latest-1-dark.svg" alt="CPMAC-Plugins. Created 2026-11-01. Go. 0 stars." width="49%">
+</picture></a>
+<a href="https://github.com/Osyna/Screnerrr"><picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-2-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/latest-2-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/latest-2-light.svg">
+  <img src="./assets/latest-2-dark.svg" alt="Screnerrr. Native Wayland screenshot annotation with on-device smart shapes Created 2026-11-01. Rust. 0 stars." width="49%">
+</picture></a>
+</p>
+<p>
+<a href="https://github.com/Osyna/Serverrr"><picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-3-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/latest-3-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/latest-3-light.svg">
+  <img src="./assets/latest-3-dark.svg" alt="Serverrr. Created 2026-11-01. Python. 0 stars." width="49%">
+</picture></a>
+<a href="https://github.com/Osyna/Taix"><picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-4-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/latest-4-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/latest-4-light.svg">
+  <img src="./assets/latest-4-dark.svg" alt="Taix. Orchestrate AI coding agents on one tmux server: desktop, terminal and phone Created 2026-09-20. Rust. 0 stars." width="49%">
+</picture></a>
+</p>
 <!-- latest-projects:end -->
 
 ## Featured projects
 
-<table>
-<tr>
-<td width="50%" valign="top">
+<p>
 <a href="https://github.com/Osyna/tanuki-context">
 <picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/tanuki-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/tanuki-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/tanuki-light.svg">
-  <img src="./assets/tanuki-dark.svg" alt="tanuki-context. MCP server and CLI for cost-aware LLM context engineering." width="100%">
+  <img src="./assets/tanuki-dark.svg" alt="tanuki-context. MCP server and CLI for cost-aware LLM context engineering." width="49%">
 </picture>
 </a>
-</td>
-<td width="50%" valign="top">
 <a href="https://github.com/Osyna/Macaw">
 <picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/macaw-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/macaw-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/macaw-light.svg">
-  <img src="./assets/macaw-dark.svg" alt="Macaw. Local-first speech-to-text for Linux and Windows." width="100%">
+  <img src="./assets/macaw-dark.svg" alt="Macaw. Local-first speech-to-text for Linux and Windows." width="49%">
 </picture>
 </a>
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
+</p>
+<p>
 <a href="https://github.com/Osyna/QuestionAir">
 <picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/question-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/question-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/question-light.svg">
-  <img src="./assets/question-dark.svg" alt="QuestionAir. Generate multiple-choice assessments from source material." width="100%">
+  <img src="./assets/question-dark.svg" alt="QuestionAir. Generate multiple-choice assessments from source material." width="49%">
 </picture>
 </a>
-</td>
-<td width="50%" valign="top">
 <a href="https://github.com/Osyna/Tiingo-python">
 <picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/market-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/market-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/market-light.svg">
-  <img src="./assets/market-dark.svg" alt="Tiingo-python. Strictly typed Python client for Tiingo market data." width="100%">
+  <img src="./assets/market-dark.svg" alt="Tiingo-python. Strictly typed Python client for Tiingo market data." width="49%">
 </picture>
 </a>
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
+</p>
+<p>
 <a href="https://github.com/Osyna/RadiAll">
 <picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/radial-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/radial-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/radial-light.svg">
-  <img src="./assets/radial-dark.svg" alt="RadiAll. Radial application launcher for Wayland, written in Rust." width="100%">
+  <img src="./assets/radial-dark.svg" alt="RadiAll. Radial application launcher for Wayland, written in Rust." width="49%">
 </picture>
 </a>
-</td>
-<td width="50%" valign="top">
 <a href="https://github.com/Osyna/Pinna">
 <picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/map-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/map-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/map-light.svg">
-  <img src="./assets/map-dark.svg" alt="Pinna. Self-hosted places and maps, built with Vue." width="100%">
+  <img src="./assets/map-dark.svg" alt="Pinna. Self-hosted places and maps, built with Vue." width="49%">
 </picture>
 </a>
-</td>
-</tr>
-</table>
+</p>
 
 [All repositories](https://github.com/Osyna?tab=repositories) · [tanuki-context on npm](https://www.npmjs.com/package/tanuki-context) · [Macaw website](https://macaw.osyna.com)
 
@@ -140,7 +148,7 @@ Also [QML](https://github.com/Osyna/QML), [AzureBlobStorageExplorer](https://git
 
 The [nightly workflow](./.github/workflows/pulse.yml) refreshes the latest original projects (newest by creation date, excluding forks and archived repositories), counters, repository stars and forks, contribution calendar, npm download chart, and animated headers. The calendar comes from GitHub's public contribution page; downloads come from npm's reported interval, which may lag today. Counts are snapshots, not real-time widgets.
 
-The mountain scene is drawn in [SVG](./scripts/art.mjs) and rendered into two looping six-second GIFs, sized for desktop and mobile. The aurora drifts above the peaks, stars shimmer, and mist moves through the valley; text stays still. Browsers requesting reduced motion receive a still SVG instead. Project cards remain text-only.
+The mountain scene is drawn in [SVG](./scripts/art.mjs) and rendered into two looping six-second GIFs, sized for desktop and mobile. The aurora drifts above the peaks, stars shimmer, and mist moves through the valley; text stays still. Browsers requesting reduced motion receive a still SVG instead. Latest and featured projects use linked, text-only cards arranged without HTML tables, so GitHub adds no table borders.
 
 [The renderer](./scripts/render.mjs) uses Node.js 22 and the pinned development dependency `sharp` for SVG rasterization and GIF encoding. Local rendering also needs Fontconfig and a sans-serif font (`fontconfig fonts-dejavu-core` on Debian/Ubuntu). Published assets need no server or external image host.
 

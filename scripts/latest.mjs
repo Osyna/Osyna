@@ -1,20 +1,23 @@
-// README "Latest projects" section: a native Markdown table, so it stays
-// readable, responsive and clickable on GitHub.
 
 export const START = "<!-- latest-projects:start -->";
 export const END = "<!-- latest-projects:end -->";
 
-// API text is entity-escaped, so it cannot open HTML, break a table cell or start Markdown inline syntax.
-const esc = (s) => s.replace(/\s+/g, " ").trim().replace(/[&<>"'|`*_[\]\\~]/g, (c) => `&#${c.charCodeAt(0)};`) || "—";
+const esc = (s) => s.replace(/\s+/g, " ").trim().replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-const link = (p) => `[${esc(p.name)}](${p.url.replace(/[()]/g, (c) => (c === "(" ? "%28" : "%29"))})`;
-
-/** Inner README section (no markers) for up to four projects from gather().latest. */
 export function renderLatest(projects) {
   const head = "## Latest projects\n\nNewest original repositories, refreshed nightly.\n";
   if (!projects.length) return `${head}\nNo public projects yet.`;
-  const rows = projects.map((p) => `| ${link(p)}<br><sub>${esc(p.language ?? "")} · Created ${p.createdAt} · ★ ${p.stars}</sub> | ${esc(p.description ?? "")} |`);
-  return `${head}\n| Project | Description |\n| --- | --- |\n${rows.join("\n")}`;
+  const cards = projects.map((p, i) => {
+    const asset = `./assets/latest-${i + 1}`;
+    const alt = esc(`${p.name}. ${p.description ?? ""} Created ${p.createdAt}. ${p.language ?? ""}. ${p.stars} stars.`);
+    return `${i && i % 2 === 0 ? "</p>\n<p>\n" : ""}<a href="${esc(p.url)}"><picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="${asset}-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="${asset}-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="${asset}-light.svg">
+  <img src="${asset}-dark.svg" alt="${alt}" width="49%">
+</picture></a>`;
+  });
+  return `${head}\n<p>\n${cards.join("\n")}\n</p>`;
 }
 
 /** Replaces only the text between the single marker pair; everything else is kept byte for byte. */
