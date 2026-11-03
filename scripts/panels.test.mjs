@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { FIELDS, rowXs, waveY } from "./art.mjs";
+import { FIELDS, rowCurve } from "./art.mjs";
 import { FEATURED, renderAll, repoRow, THEMES, weekly, wrap } from "./panels.mjs";
 
 const day = (i) => new Date(Date.UTC(2025, 10, 2 + i)).toISOString().slice(0, 10);
@@ -14,16 +14,19 @@ const stats = {
   calendar: { total: 365, days: Array.from({ length: 366 }, (_, i) => ({ date: day(i), level: i % 5, count: i % 5 })) },
 };
 
-test("particle wave loops seamlessly: sliding one wavelength lands every dot on another dot", () => {
+test("pixel matrix loops seamlessly: each row's brightness curve ends where it starts", () => {
   for (const o of Object.values(FIELDS)) {
-    const xs = rowXs(o), step = xs[1] - xs[0];
-    assert.ok(Math.abs(o.lambda / step - Math.round(o.lambda / step)) < 1e-9, "dot spacing divides the wavelength");
-    assert.ok(xs[0] <= o.x0 - o.lambda + 1e-9 && xs.at(-1) + step >= o.x1, "row covers the window plus one period");
-    for (const v of [0, 0.37, 1]) for (const x of xs) assert.ok(Math.abs(waveY(x + o.lambda, v, o) - waveY(x, v, o)) < 1e-9);
+    for (let y = 6; y < o.height; y += o.step) {
+      for (const layer of ["main", "echo"]) {
+        const c = rowCurve(y, o, layer);
+        assert.deepEqual({ ...c[0], at: 0 }, { ...c.at(-1), at: 0 });
+      }
+    }
   }
   const header = renderAll(stats).find(([n]) => n === "header.svg")[1];
-  assert.match(header, new RegExp(`translateX\\(${FIELDS.desktop.lambda}px\\)`));
+  assert.match(header, /@keyframes mxm\d+\{0%/);
   assert.match(header, /prefers-reduced-motion:reduce/);
+  assert.ok(header.length < 400_000, `header is ${header.length} bytes`);
 });
 
 test("every asset the README references is rendered", () => {

@@ -64,28 +64,28 @@
   <img src="./assets/title-latest-dark.svg" alt="/002 Latest projects. Newest original repositories, refreshed nightly." width="100%">
 </picture>
 <a href="https://github.com/Osyna/OpenInstaLink"><picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-1-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/latest-1-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/latest-1-light.svg">
-  <img src="./assets/latest-1-dark.svg" alt="OpenInstaLink. Created 2026-11-02. . 0 stars." width="100%">
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/recent-1-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/recent-1-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/recent-1-light.svg">
+  <img src="./assets/recent-1-dark.svg" alt="OpenInstaLink. Created 2026-11-02. . 0 stars." width="100%">
 </picture></a>
 <a href="https://github.com/Osyna/Overglass"><picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-2-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/latest-2-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/latest-2-light.svg">
-  <img src="./assets/latest-2-dark.svg" alt="Overglass. Control rooted LG webOS TVs, build JSON overlays, and install bundled TV apps from a web UI. Created 2026-11-02. Python. 0 stars." width="100%">
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/recent-2-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/recent-2-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/recent-2-light.svg">
+  <img src="./assets/recent-2-dark.svg" alt="Overglass. Control rooted LG webOS TVs, build JSON overlays, and install bundled TV apps from a web UI. Created 2026-11-02. Python. 0 stars." width="100%">
 </picture></a>
 <a href="https://github.com/Osyna/CPMAC-Plugins"><picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-3-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/latest-3-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/latest-3-light.svg">
-  <img src="./assets/latest-3-dark.svg" alt="CPMAC-Plugins. Created 2026-11-01. Go. 0 stars." width="100%">
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/recent-3-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/recent-3-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/recent-3-light.svg">
+  <img src="./assets/recent-3-dark.svg" alt="CPMAC-Plugins. Created 2026-11-01. Go. 0 stars." width="100%">
 </picture></a>
 <a href="https://github.com/Osyna/Screnerrr"><picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-4-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/latest-4-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/latest-4-light.svg">
-  <img src="./assets/latest-4-dark.svg" alt="Screnerrr. Native Wayland screenshot annotation with on-device smart shapes Created 2026-11-01. Rust. 0 stars." width="100%">
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/recent-4-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/recent-4-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/recent-4-light.svg">
+  <img src="./assets/recent-4-dark.svg" alt="Screnerrr. Native Wayland screenshot annotation with on-device smart shapes Created 2026-11-01. Rust. 0 stars." width="100%">
 </picture></a>
 </p>
 <!-- latest-projects:end -->
@@ -125,7 +125,7 @@ Also [QML](https://github.com/Osyna/QML), [AzureBlobStorageExplorer](https://git
 
 The [nightly workflow](./.github/workflows/pulse.yml) refreshes the latest original projects (newest by creation date, excluding forks and archived repositories), counters, repository stars, the contribution calendar and npm downloads.
 
-Every panel is a plain SVG built by [the renderer](./scripts/render.mjs) on Node.js 22, with no dependencies. The header's particle wave is a CSS animation inside the SVG: the dot sheet repeats every wavelength and slides exactly one wavelength per cycle, so it loops without a jump. Browsers that request reduced motion get a still frame. Each panel has dark and light variants, plus a narrow layout for phones.
+Every panel is a plain SVG built by [the renderer](./scripts/render.mjs) on Node.js 22, with no dependencies. The header's pixel-matrix wave is a CSS animation inside the SVG: each row of pixels shares one brightness curve sampled over a full period, and each column starts it at a different point, so the waves travel and loop without a jump. Browsers that request reduced motion get a still frame. Each panel has dark and light variants, plus a narrow layout for phones.
 
 To check and refresh locally:
 
