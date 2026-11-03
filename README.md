@@ -63,29 +63,29 @@
   <source media="(prefers-color-scheme: light)" srcset="./assets/title-latest-light.svg">
   <img src="./assets/title-latest-dark.svg" alt="/002 Latest projects. Newest original repositories, refreshed nightly." width="100%">
 </picture>
-<a href="https://github.com/Osyna/CPMAC-Plugins"><picture>
+<a href="https://github.com/Osyna/OpenInstaLink"><picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-1-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/latest-1-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/latest-1-light.svg">
-  <img src="./assets/latest-1-dark.svg" alt="CPMAC-Plugins. Created 2026-11-01. Go. 0 stars." width="100%">
+  <img src="./assets/latest-1-dark.svg" alt="OpenInstaLink. Created 2026-11-02. . 0 stars." width="100%">
 </picture></a>
-<a href="https://github.com/Osyna/Screnerrr"><picture>
+<a href="https://github.com/Osyna/Overglass"><picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-2-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/latest-2-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/latest-2-light.svg">
-  <img src="./assets/latest-2-dark.svg" alt="Screnerrr. Native Wayland screenshot annotation with on-device smart shapes Created 2026-11-01. Rust. 0 stars." width="100%">
+  <img src="./assets/latest-2-dark.svg" alt="Overglass. Control rooted LG webOS TVs, build JSON overlays, and install bundled TV apps from a web UI. Created 2026-11-02. Python. 0 stars." width="100%">
 </picture></a>
-<a href="https://github.com/Osyna/Serverrr"><picture>
+<a href="https://github.com/Osyna/CPMAC-Plugins"><picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-3-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/latest-3-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/latest-3-light.svg">
-  <img src="./assets/latest-3-dark.svg" alt="Serverrr. Created 2026-11-01. Python. 0 stars." width="100%">
+  <img src="./assets/latest-3-dark.svg" alt="CPMAC-Plugins. Created 2026-11-01. Go. 0 stars." width="100%">
 </picture></a>
-<a href="https://github.com/Osyna/Taix"><picture>
+<a href="https://github.com/Osyna/Screnerrr"><picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-4-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/latest-4-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/latest-4-light.svg">
-  <img src="./assets/latest-4-dark.svg" alt="Taix. Orchestrate AI coding agents on one tmux server: desktop, terminal and phone Created 2026-09-20. Rust. 0 stars." width="100%">
+  <img src="./assets/latest-4-dark.svg" alt="Screnerrr. Native Wayland screenshot annotation with on-device smart shapes Created 2026-11-01. Rust. 0 stars." width="100%">
 </picture></a>
 </p>
 <!-- latest-projects:end -->
