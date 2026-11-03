@@ -1,23 +1,25 @@
-
 export const START = "<!-- latest-projects:start -->";
 export const END = "<!-- latest-projects:end -->";
 
-const esc = (s) => s.replace(/\s+/g, " ").trim().replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const esc = (s) => String(s).replace(/\s+/g, " ").trim().replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+/** A themed, responsive <picture> for ./assets/<base>-{,mobile-}{dark,light}.svg. */
+export function picture(base, alt, href) {
+  const a = `./assets/${base}`;
+  const pic = `<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="${a}-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="${a}-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="${a}-light.svg">
+  <img src="${a}-dark.svg" alt="${esc(alt)}" width="100%">
+</picture>`;
+  return href ? `<a href="${esc(href)}">${pic}</a>` : pic;
+}
 
 export function renderLatest(projects) {
-  const head = "## Latest projects\n\nNewest original repositories, refreshed nightly.\n";
-  if (!projects.length) return `${head}\nNo public projects yet.`;
-  const cards = projects.map((p, i) => {
-    const asset = `./assets/latest-${i + 1}`;
-    const alt = esc(`${p.name}. ${p.description ?? ""} Created ${p.createdAt}. ${p.language ?? ""}. ${p.stars} stars.`);
-    return `${i && i % 2 === 0 ? "</p>\n<p>\n" : ""}<a href="${esc(p.url)}"><picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="${asset}-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="${asset}-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="${asset}-light.svg">
-  <img src="${asset}-dark.svg" alt="${alt}" width="49%">
-</picture></a>`;
-  });
-  return `${head}\n<p>\n${cards.join("\n")}\n</p>`;
+  const title = picture("title-latest", "/002 Latest projects. Newest original repositories, refreshed nightly.");
+  if (!projects.length) return `<p>\n${title}\n</p>\n\nNo public projects yet.`;
+  const rows = projects.map((p, i) => picture(`latest-${i + 1}`, `${p.name}. ${p.description ?? ""} Created ${p.createdAt}. ${p.language ?? ""}. ${p.stars} stars.`, p.url));
+  return `<p>\n${title}\n${rows.join("\n")}\n</p>`;
 }
 
 /** Replaces only the text between the single marker pair; everything else is kept byte for byte. */

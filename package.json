@@ -2,12 +2,9 @@
   "name": "osyna-profile",
   "private": true,
   "type": "module",
-  "description": "Illustrated GitHub profile with nightly GitHub and npm data, zero runtime dependencies.",
+  "description": "Terminal-style GitHub profile with an animated particle-wave header and nightly GitHub and npm data, zero dependencies.",
   "scripts": {
     "render": "node scripts/render.mjs",
     "test": "node --test scripts/*.test.mjs"
-  },
-  "devDependencies": {
-    "sharp": "0.35.5"
   }
 }

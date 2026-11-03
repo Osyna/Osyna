@@ -1,10 +1,6 @@
 <picture>
-  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/matrix-mobile-light.svg">
-  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="./assets/matrix-mobile-dark.svg">
-  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: light)" srcset="./assets/matrix-light.svg">
-  <source media="(prefers-reduced-motion: reduce)" srcset="./assets/matrix-dark.svg">
-  <source media="(max-width: 600px)" srcset="./assets/matrix-mobile.gif">
-  <img src="./assets/matrix.gif" alt="Osyna. Animated emerald pixel-matrix waves across the header. Data and AI engineer, open-source creator, and live GitHub stats." width="100%">
+  <source media="(max-width: 600px)" srcset="./assets/header-mobile.svg">
+  <img src="./assets/header.svg" alt="OSYNA. Data & AI consulting, Brussels. The intelligence of data. Sober by design. Animated green particle wave with live GitHub stats." width="100%">
 </picture>
 
 <p align="center">
@@ -14,120 +10,101 @@
   Brussels, Belgium
 </p>
 
-<!-- latest-projects:start -->
-## Latest projects
-
-Newest original repositories, refreshed nightly.
-
 <p>
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/title-featured-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/title-featured-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/title-featured-light.svg">
+  <img src="./assets/title-featured-dark.svg" alt="/001 Featured repositories. Flagship projects and open-source work." width="100%">
+</picture>
+<a href="https://github.com/Osyna/tanuki-context"><picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/repo-tanuki-context-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/repo-tanuki-context-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/repo-tanuki-context-light.svg">
+  <img src="./assets/repo-tanuki-context-dark.svg" alt="tanuki-context. MCP server + CLI. Feed rich context to LLMs at low cost, with smart summarisation and robust filtering. Python, MCP, LLM." width="100%">
+</picture></a>
+<a href="https://github.com/Osyna/Macaw"><picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/repo-macaw-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/repo-macaw-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/repo-macaw-light.svg">
+  <img src="./assets/repo-macaw-dark.svg" alt="Macaw. Local-first speech-to-text. Swap engines (Whisper, Moonshine, Parakeet…) with GPU/CPU fallback. Python, CUDA, STT." width="100%">
+</picture></a>
+<a href="https://github.com/Osyna/QuestionAir"><picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/repo-questionair-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/repo-questionair-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/repo-questionair-light.svg">
+  <img src="./assets/repo-questionair-dark.svg" alt="QuestionAir. Generates and validates multiple-choice assessments from source material (LLaMA, embeddings, French QC). Python, RAG, SQLite." width="100%">
+</picture></a>
+<a href="https://github.com/Osyna/Tiingo-python"><picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/repo-tiingo-python-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/repo-tiingo-python-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/repo-tiingo-python-light.svg">
+  <img src="./assets/repo-tiingo-python-dark.svg" alt="Tiingo-python. Typed client for the Tiingo market-data API (EOD, IEX, intraday, crypto, FX, fundamentals). Python, Finance, API." width="100%">
+</picture></a>
+<a href="https://github.com/Osyna/RadiAll"><picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/repo-radiall-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/repo-radiall-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/repo-radiall-light.svg">
+  <img src="./assets/repo-radiall-dark.svg" alt="RadiAll. Radial application launcher for Wayland, written in Rust. Rust, Wayland, Linux." width="100%">
+</picture></a>
+<a href="https://github.com/Osyna/Pinna"><picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/repo-pinna-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/repo-pinna-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/repo-pinna-light.svg">
+  <img src="./assets/repo-pinna-dark.svg" alt="Pinna. Self-hostable places and maps. An open alternative to Mapstr, built with Vue. Vue, Self-hosted, Maps." width="100%">
+</picture></a>
+</p>
+
+<!-- latest-projects:start -->
+<p>
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/title-latest-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/title-latest-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/title-latest-light.svg">
+  <img src="./assets/title-latest-dark.svg" alt="/002 Latest projects. Newest original repositories, refreshed nightly." width="100%">
+</picture>
 <a href="https://github.com/Osyna/CPMAC-Plugins"><picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-1-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/latest-1-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/latest-1-light.svg">
-  <img src="./assets/latest-1-dark.svg" alt="CPMAC-Plugins. Created 2026-11-01. Go. 0 stars." width="49%">
+  <img src="./assets/latest-1-dark.svg" alt="CPMAC-Plugins. Created 2026-11-01. Go. 0 stars." width="100%">
 </picture></a>
 <a href="https://github.com/Osyna/Screnerrr"><picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-2-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/latest-2-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/latest-2-light.svg">
-  <img src="./assets/latest-2-dark.svg" alt="Screnerrr. Native Wayland screenshot annotation with on-device smart shapes Created 2026-11-01. Rust. 0 stars." width="49%">
+  <img src="./assets/latest-2-dark.svg" alt="Screnerrr. Native Wayland screenshot annotation with on-device smart shapes Created 2026-11-01. Rust. 0 stars." width="100%">
 </picture></a>
-</p>
-<p>
 <a href="https://github.com/Osyna/Serverrr"><picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-3-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/latest-3-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/latest-3-light.svg">
-  <img src="./assets/latest-3-dark.svg" alt="Serverrr. Created 2026-11-01. Python. 0 stars." width="49%">
+  <img src="./assets/latest-3-dark.svg" alt="Serverrr. Created 2026-11-01. Python. 0 stars." width="100%">
 </picture></a>
 <a href="https://github.com/Osyna/Taix"><picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/latest-4-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/latest-4-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/latest-4-light.svg">
-  <img src="./assets/latest-4-dark.svg" alt="Taix. Orchestrate AI coding agents on one tmux server: desktop, terminal and phone Created 2026-09-20. Rust. 0 stars." width="49%">
+  <img src="./assets/latest-4-dark.svg" alt="Taix. Orchestrate AI coding agents on one tmux server: desktop, terminal and phone Created 2026-09-20. Rust. 0 stars." width="100%">
 </picture></a>
 </p>
 <!-- latest-projects:end -->
 
-## Featured projects
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/expertise-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/expertise-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/expertise-light.svg">
+  <img src="./assets/expertise-dark.svg" alt="/003 Expertise and stack: Python, Rust, TypeScript, SQL, ETL / ELT, Data Engineering, RAG / MCP, MLOps, Ollama, Docker, Azure, AWS, Power BI, Automation, Green IT, Arch / Hyprland, Neovim / tmux. /004 Principles: Sobriety, Useful, efficient and intentional solutions. Excellence, High standards, from design to delivery. Independence, Vendor-neutral and technology-agnostic. Transparency, Clear methods, honest trade-offs. Sustainability, Lower impact, long-lasting systems (Green IT). Rigour, Data-driven, tested and production-ready work." width="100%">
+</picture>
 
-<p>
-<a href="https://github.com/Osyna/tanuki-context">
 <picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/tanuki-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/tanuki-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/tanuki-light.svg">
-  <img src="./assets/tanuki-dark.svg" alt="tanuki-context. MCP server and CLI for cost-aware LLM context engineering." width="49%">
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/highlights-mobile-light.svg">
+  <source media="(max-width: 600px)" srcset="./assets/highlights-mobile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/highlights-light.svg">
+  <img src="./assets/highlights-dark.svg" alt="/005 Contribution highlights: public repositories, GitHub stars, tanuki-context npm downloads, and the contribution calendar for the last year. Refreshed nightly." width="100%">
 </picture>
-</a>
-<a href="https://github.com/Osyna/Macaw">
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/macaw-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/macaw-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/macaw-light.svg">
-  <img src="./assets/macaw-dark.svg" alt="Macaw. Local-first speech-to-text for Linux and Windows." width="49%">
-</picture>
-</a>
-</p>
-<p>
-<a href="https://github.com/Osyna/QuestionAir">
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/question-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/question-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/question-light.svg">
-  <img src="./assets/question-dark.svg" alt="QuestionAir. Generate multiple-choice assessments from source material." width="49%">
-</picture>
-</a>
-<a href="https://github.com/Osyna/Tiingo-python">
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/market-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/market-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/market-light.svg">
-  <img src="./assets/market-dark.svg" alt="Tiingo-python. Strictly typed Python client for Tiingo market data." width="49%">
-</picture>
-</a>
-</p>
-<p>
-<a href="https://github.com/Osyna/RadiAll">
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/radial-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/radial-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/radial-light.svg">
-  <img src="./assets/radial-dark.svg" alt="RadiAll. Radial application launcher for Wayland, written in Rust." width="49%">
-</picture>
-</a>
-<a href="https://github.com/Osyna/Pinna">
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/map-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/map-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/map-light.svg">
-  <img src="./assets/map-dark.svg" alt="Pinna. Self-hosted places and maps, built with Vue." width="49%">
-</picture>
-</a>
-</p>
 
 [All repositories](https://github.com/Osyna?tab=repositories) · [tanuki-context on npm](https://www.npmjs.com/package/tanuki-context) · [Macaw website](https://macaw.osyna.com)
-
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/activity-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/activity-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/activity-light.svg">
-  <img src="./assets/activity-dark.svg" alt="GitHub contributions over the last year and tanuki-context npm downloads. Refreshed nightly from public data." width="100%">
-</picture>
-
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/currently-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/currently-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/currently-light.svg">
-  <img src="./assets/currently-dark.svg" alt="Currently building tanuki-context, exploring local AI, and freelancing on data pipelines and AI systems." width="100%">
-</picture>
-
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/stack-mobile-light.svg">
-  <source media="(max-width: 600px)" srcset="./assets/stack-mobile-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/stack-light.svg">
-  <img src="./assets/stack-dark.svg" alt="Tech stack: Python, Rust, TypeScript, SQL; MCP, RAG, Ollama, ONNX, CUDA and ROCm; Polars, Spark, PostgreSQL; AWS, Azure, Docker and Linux." width="100%">
-</picture>
 
 <details>
 <summary>Project notes & more open source</summary>
@@ -146,22 +123,17 @@ Also [QML](https://github.com/Osyna/QML), [AzureBlobStorageExplorer](https://git
 <details>
 <summary>How this profile stays up to date</summary>
 
-The [nightly workflow](./.github/workflows/pulse.yml) refreshes the latest original projects (newest by creation date, excluding forks and archived repositories), counters, repository stars and forks, contribution calendar, npm download chart, and animated headers. The calendar comes from GitHub's public contribution page; downloads come from npm's reported interval, which may lag today. Counts are snapshots, not real-time widgets.
+The [nightly workflow](./.github/workflows/pulse.yml) refreshes the latest original projects (newest by creation date, excluding forks and archived repositories), counters, repository stars, the contribution calendar and npm downloads.
 
-The dark-emerald header has edge-to-edge pixel-matrix waves, rendered into six-second GIFs for desktop and mobile. The text and evenly spaced statistics stay steady; browsers requesting reduced motion receive a still SVG instead. Latest and featured projects use linked cards without HTML tables, so GitHub adds no table borders.
-
-[The renderer](./scripts/render.mjs) uses Node.js 22 and the pinned development dependency `sharp` for SVG rasterization and GIF encoding. Local rendering also needs Fontconfig and a sans-serif font (`fontconfig fonts-dejavu-core` on Debian/Ubuntu). Published assets need no server or external image host.
-
-Project cards use a quiet forest-to-emerald gradient, with no decorative shapes or animations behind the descriptions and live counts.
+Every panel is a plain SVG built by [the renderer](./scripts/render.mjs) on Node.js 22, with no dependencies. The header's particle wave is a CSS animation inside the SVG: the dot sheet repeats every wavelength and slides exactly one wavelength per cycle, so it loops without a jump. Browsers that request reduced motion get a still frame. Each panel has dark and light variants, plus a narrow layout for phones.
 
 To check and refresh locally:
 
 ```sh
-npm ci
 npm test
 npm run render
 ```
 
-An optional `GH_TOKEN` raises the GitHub API rate limit; it is sent only to `api.github.com`. Data validation, README marker checks, and GIF rendering complete before published files are written. Failed requests or malformed data leave the published panels intact. If GitHub changes its public calendar markup, the parser may need an update.
+An optional `GH_TOKEN` raises the GitHub API rate limit; it is sent only to `api.github.com`. Data validation, README marker checks and rendering complete in memory before any file is written, so failed requests or malformed data leave the published panels intact. If GitHub changes its public calendar markup, the parser may need an update.
 
 </details>

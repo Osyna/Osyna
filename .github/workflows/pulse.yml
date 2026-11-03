@@ -1,6 +1,6 @@
 name: pulse
 
-# Refreshes the profile panels, GIF headers, and latest-projects section.
+# Refreshes the profile panels, animated header, and latest-projects section.
 
 on:
   schedule:
@@ -30,9 +30,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-
-      - name: install rendering dependency
-        run: npm ci
 
       - name: check data boundaries
         run: npm test

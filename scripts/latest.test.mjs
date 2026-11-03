@@ -15,7 +15,7 @@ const p = (over = {}) => ({
 
 test("renderLatest escapes repository text inside accessible image labels", () => {
   const html = renderLatest([p({ name: 'repo "name"', description: '"><img src=x onerror=alert(1)> & details' })]);
-  const label = /\balt="([^"]*)"/.exec(html)[1];
+  const label = /latest-1-dark\.svg" alt="([^"]*)"/.exec(html)[1];
   assert.ok(label.includes("repo &quot;name&quot;"));
   assert.ok(label.includes("&lt;img src=x onerror=alert(1)&gt; &amp; details"));
   assert.doesNotMatch(label, /[<>"]/);
