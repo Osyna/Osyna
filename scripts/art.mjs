@@ -1,86 +1,66 @@
-// Particle-wave field for the animated header.
+// Pixel-matrix wave for the animated header.
 //
-// The sheet is rows of dots on a travelling wave. Every row repeats exactly
-// every `lambda` pixels along x, so sliding the whole sheet right by `lambda`
-// lands every dot on the position another dot held at the start: the CSS
-// animation loops with no visible jump. Each dot is a zero-length path segment
-// with a round cap, which keeps thousands of particles small and cheap to paint.
+// A fixed grid of square pixels lights up as two waves travel across it: a
+// main wave moving right and a fainter echo moving left. Every pixel in a row
+// sees the same brightness curve over time, only shifted by its column, so
+// each row gets one CSS keyframes rule and each column one animation delay.
+// The curve is sampled over one full period, so 0% and 100% match and the
+// loop is seamless. Reduced motion pauses on a single frame of the wave.
 
 const TAU = Math.PI * 2;
-const n = (v) => Math.round(v * 10) / 10;
+const n = (v) => Math.round(v * 1000) / 1000;
+const SAMPLES = 30;
 
 export const FIELDS = {
-  desktop: { x0: 300, x1: 1080, top: 18, depth: 210, rows: 24, lambda: 360, gap: 8, amp: 30, ampGrow: 24, twist: 2.3, ripple: 7, dot: 2.4, seconds: 11, sparks: 34, tilt: -9, pivot: [720, 140] },
-  mobile: { x0: -40, x1: 480, top: 8, depth: 150, rows: 18, lambda: 260, gap: 7, amp: 20, ampGrow: 18, twist: 2.3, ripple: 5, dot: 2, seconds: 10, sparks: 20, tilt: -10, pivot: [280, 110] },
+  desktop: { step: 16, height: 300, seconds: 6, centre: 0.5, swing: 0.2, echoCentre: 0.36, echoSwing: 0.22 },
+  mobile: { step: 14, height: 330, seconds: 6, centre: 0.45, swing: 0.2, echoCentre: 0.3, echoSwing: 0.2 },
 };
 
-/** Height of row v (0 = far, 1 = near) at x. Periodic in x with period o.lambda. */
-export function waveY(x, v, o) {
-  const k = TAU / o.lambda;
-  return o.top + v * o.depth + (o.amp + o.ampGrow * v) * Math.sin(k * x + v * o.twist) + o.ripple * Math.sin(2 * k * x - v * 3.1);
+/** Main-wave and echo energy for a pixel at row y when the wave sits at offset s (fraction of the width). */
+export function energy(y, s, o) {
+  const h = o.height;
+  const main = Math.exp(-(((y - h * (o.centre + o.swing * Math.sin(s * TAU))) / (h * 0.15)) ** 2));
+  const echo = 0.55 * Math.exp(-(((y - h * (o.echoCentre + o.echoSwing * Math.sin(s * TAU + 1.4))) / (h * 0.12)) ** 2));
+  return { main, echo };
 }
 
-/** Dot x positions for one row: an exact divisor of lambda apart, starting one period left of x0. */
-export function rowXs(o) {
-  const per = Math.round(o.lambda / o.gap), step = o.lambda / per, xs = [];
-  for (let i = 0; o.x0 - o.lambda + i * step < o.x1; i++) xs.push(o.x0 - o.lambda + i * step);
-  return xs;
-}
-
-function mulberry32(seed) {
-  return () => {
-    seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-const COLORS = ["#166534", "#22c55e", "#86efac"];
-
-/**
- * Returns { style, defs, body } for a particle field clipped to width x height.
- * `mask` is the id of a mask (defined by the caller or here) that fades the sheet.
- */
-export function particleField(width, height, o, id = "pf") {
-  const xs = rowXs(o);
-  const k = TAU / o.lambda;
-  let rows = "";
-  for (let r = 0; r < o.rows; r++) {
-    const v = r / (o.rows - 1);
-    const buckets = ["", "", ""];
-    for (const x of xs) {
-      const crest = (Math.sin(k * x + v * o.twist) + 1) / 2;
-      const b = crest > 0.78 ? 2 : crest > 0.4 ? 1 : 0;
-      buckets[b] += `M${n(x)} ${n(waveY(x, v, o))}h0`;
-    }
-    const width = n(o.dot * (0.55 + 0.75 * v));
-    const alpha = 0.28 + 0.62 * v;
-    buckets.forEach((d, b) => {
-      if (d) rows += `<path d="${d}" stroke="${COLORS[b]}" stroke-width="${n(width * (b === 2 ? 1.15 : 1))}" stroke-opacity="${n(alpha * [0.55, 0.8, 1][b] * 100) / 100}"/>`;
-    });
+/** Keyframe samples [{at, opacity, scale}] for one row and one layer. */
+export function rowCurve(y, o, layer) {
+  const out = [];
+  for (let i = 0; i <= SAMPLES; i++) {
+    const p = (i % SAMPLES) / SAMPLES;
+    // Main moves right: a pixel at column u sees offset u - p. Pixel u = 0 is the reference.
+    const e = layer === "main" ? energy(y, -p, o).main : energy(y, p, o).echo;
+    const opacity = layer === "main" ? 0.1 + e * 0.7 : e * 0.75;
+    out.push({ at: (i / SAMPLES) * 100, opacity: n(Math.min(1, opacity)), scale: n(0.55 + e * 0.45) });
   }
+  return out;
+}
 
-  // Sparks ride on the sheet and pulse. Each one is copied every lambda so the loop stays seamless.
-  const rand = mulberry32(width * 7 + height);
-  let sparks = "";
-  for (let i = 0; i < o.sparks; i++) {
-    const v = 0.25 + rand() * 0.75;
-    const base = o.x0 - o.lambda + rand() * o.lambda;
-    const delay = n(rand() * 4);
-    for (let x = base; x < o.x1; x += o.lambda) {
-      sparks += `<circle class="${id}-tw" style="animation-delay:-${delay}s" cx="${n(x)}" cy="${n(waveY(x, v, o))}" r="${n(o.dot * 0.9 + v * 1.1)}" fill="#bbf7d0"/>`;
+export function matrixField(width, o, id = "mx") {
+  const cols = [], rows = [];
+  for (let x = 6; x < width; x += o.step) cols.push(x);
+  for (let y = 6; y < o.height; y += o.step) rows.push(y);
+  const T = o.seconds, size = o.step * 0.18;
+  let css = `.${id} rect{transform-box:fill-box;transform-origin:center;animation-duration:${T}s;animation-timing-function:linear;animation-iteration-count:infinite}
+@media (prefers-reduced-motion:reduce){.${id} rect{animation-play-state:paused}}`;
+  cols.forEach((x, c) => {
+    const u = x / width, fade = n(0.45 + u * 0.55);
+    // Main: wanted curve(p - u), so start u of a period late. Echo: curve(p + u), start u early.
+    css += `\n.${id} .a${c}{animation-delay:-${n(((1 - u) % 1) * T)}s;fill-opacity:${fade}}.${id} .b${c}{animation-delay:-${n(u * T)}s;fill-opacity:${fade}}`;
+  });
+  let body = "";
+  rows.forEach((y, r) => {
+    for (const layer of ["main", "echo"]) {
+      const curve = rowCurve(y, o, layer);
+      if (layer === "echo" && Math.max(...curve.map((k) => k.opacity)) < 0.04) continue;
+      const name = `${id}${layer[0]}${r}`;
+      css += `\n@keyframes ${name}{${curve.map((k) => `${n(k.at)}%{opacity:${k.opacity};transform:scale(${k.scale})}`).join("")}}.${id} .${layer[0]}r${r} rect{animation-name:${name}}`;
+      const fill = layer === "main" ? "#22c55e" : "#86efac";
+      body += `<g class="${layer[0]}r${r}" fill="${fill}">`;
+      cols.forEach((x, c) => { body += `<rect class="${layer === "main" ? "a" : "b"}${c}" x="${x}" y="${y}" width="${n(size * 2)}" height="${n(size * 2)}" rx=".8"/>`; });
+      body += "</g>";
     }
-  }
-
-  const style = `.${id}-flow{animation:${id}-flow ${o.seconds}s linear infinite}
-@keyframes ${id}-flow{from{transform:translateX(0)}to{transform:translateX(${o.lambda}px)}}
-.${id}-bob{animation:${id}-bob 6s ease-in-out infinite alternate}
-@keyframes ${id}-bob{from{transform:translateY(-6px)}to{transform:translateY(6px)}}
-.${id}-tw{opacity:0;animation:${id}-tw 4s ease-in-out infinite}
-@keyframes ${id}-tw{0%,100%{opacity:0}50%{opacity:.95}}
-@media (prefers-reduced-motion:reduce){.${id}-flow,.${id}-bob,.${id}-tw{animation:none}.${id}-tw{opacity:.5}}`;
-
-  const body = `<g class="${id}-bob"><g transform="rotate(${o.tilt} ${o.pivot[0]} ${o.pivot[1]})"><g class="${id}-flow" fill="none" stroke-linecap="round">${rows}${sparks}</g></g></g>`;
-  return { style, body };
+  });
+  return { style: css, body: `<g class="${id}">${body}</g>` };
 }

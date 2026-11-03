@@ -1,5 +1,5 @@
 // Pure SVG rendering: stats in, [filename, svg] pairs out. No I/O.
-import { FIELDS, particleField } from "./art.mjs";
+import { FIELDS, matrixField } from "./art.mjs";
 
 const SANS = "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', monospace";
@@ -108,20 +108,19 @@ function spark(series, x, y, w, h, color, id) {
 
 export function header(stats, mobile) {
   const W = mobile ? 420 : 1000, HT = mobile ? 700 : 480;
-  const field = particleField(W, HT, mobile ? FIELDS.mobile : FIELDS.desktop);
+  const field = matrixField(W, mobile ? FIELDS.mobile : FIELDS.desktop);
   const style = `${field.style}
 .cur{animation:cur 1.1s steps(1) infinite}@keyframes cur{50%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.cur{animation:none}}`;
-  const mask = mobile ? { cx: 0.72, cy: 0.2, r: 0.62 } : { cx: 0.8, cy: 0.3, r: 0.55 };
+  const mask = mobile ? { cx: 0.7, cy: 0.25, r: 0.7 } : { cx: 0.75, cy: 0.35, r: 0.7 };
   let b = `<defs>
 <clipPath id="clip">${box(1, 1, W - 2, HT - 2, "#fff", 14)}</clipPath>
-<radialGradient id="fadeg" cx="${mask.cx}" cy="${mask.cy}" r="${mask.r}"><stop stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-<mask id="fade" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${HT}"><rect width="${W}" height="${HT}" fill="url(#fadeg)"/></mask>
+<filter id="ink" x="-10%" y="-30%" width="120%" height="160%"><feDropShadow dx="0" dy="1" stdDeviation="2.5" flood-color="#020805" flood-opacity=".95"/></filter>
 <radialGradient id="glow" cx="${mask.cx}" cy="${mask.cy}" r="${mask.r * 0.9}"><stop stop-color="#14532d" stop-opacity=".55"/><stop offset="1" stop-color="#14532d" stop-opacity="0"/></radialGradient>
 <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1"><stop stop-color="${H.accent}"/><stop offset="1" stop-color="${H.accent}" stop-opacity="0"/></linearGradient>
 </defs>`;
   b += box(1, 1, W - 2, HT - 2, H.bg, 14, `stroke="${H.line}"`);
-  b += `<g clip-path="url(#clip)"><rect width="${W}" height="${HT}" fill="url(#glow)"/><g mask="url(#fade)">${field.body}</g></g>`;
+  b += `<g clip-path="url(#clip)"><rect width="${W}" height="${HT}" fill="url(#glow)"/>${field.body}</g>`;
 
   // Terminal title bar.
   const px = mobile ? 20 : 28;
@@ -135,11 +134,12 @@ export function header(stats, mobile) {
   const S = mobile
     ? { bar: [24, 124, 140], nameX: 42, nameY: 192, nameSize: 60, ls: 10, roleY: 234, roleSize: 20, tagY: [268, 290], tagSize: 13.5 }
     : { bar: [40, 80, 170], nameX: 64, nameY: 160, nameSize: 78, ls: 16, roleY: 205, roleSize: 27, tagY: [241], tagSize: 17 };
-  b += box(S.bar[0], S.bar[1], 3, S.bar[2], "url(#bar)", 1.5);
+  b += box(S.bar[0], S.bar[1], 3, S.bar[2], "url(#bar)", 1.5) + `<g filter="url(#ink)">`;
   b += t(S.nameX - 2, S.nameY, PROFILE.name, S.nameSize, H.ink, `font-weight="700" letter-spacing="${S.ls}"`);
   b += t(S.nameX, S.roleY, PROFILE.role, S.roleSize, H.text);
   const tag = mobile ? ["The intelligence of data.", "Sober by design."] : [PROFILE.tagline];
   tag.forEach((line, i) => { b += t(S.nameX, S.tagY[i], line, S.tagSize, H.accent, mono); });
+  b += "</g>";
 
   // Stats box.
   const label = (x, y, s) => t(x, y, s, 10.5, H.muted, `${mono} letter-spacing="1.4"`);
@@ -175,7 +175,7 @@ export function header(stats, mobile) {
     b += vline(608, 384, 444, H.line);
     b += t(630, 412, ">", 13, H.accent, mono) + t(650, 412, PROFILE.pitch[0], 13, H.text, mono) + t(650, 434, PROFILE.pitch[1], 13, H.text, mono);
   }
-  const alt = `${PROFILE.name}. ${PROFILE.role}. ${PROFILE.tagline} Animated green particle wave. ${stats.repos} public repositories, ${stats.stars} stars, ${stats.followers} followers, on GitHub since ${stats.sinceYear}.`;
+  const alt = `${PROFILE.name}. ${PROFILE.role}. ${PROFILE.tagline} Animated green pixel-matrix wave. ${stats.repos} public repositories, ${stats.stars} stars, ${stats.followers} followers, on GitHub since ${stats.sinceYear}.`;
   return svg(W, HT, alt, b, style);
 }
 
@@ -350,7 +350,7 @@ export function renderAll(stats) {
         if (!repo) throw new Error(`Repository not returned by GitHub: ${p.name}`);
         files.push([`repo-${p.name.toLowerCase()}-${sfx}`, repoRow(p, repo.stars, mobile, T)]);
       }
-      latest.forEach((p, i) => files.push([`latest-${i + 1}-${sfx}`, repoRow(p, p.stars, mobile, T)]));
+      latest.forEach((p, i) => files.push([`recent-${i + 1}-${sfx}`, repoRow(p, p.stars, mobile, T)]));
       files.push([`expertise-${sfx}`, expertise(mobile, T)]);
       files.push([`highlights-${sfx}`, highlights(stats, mobile, T)]);
     }

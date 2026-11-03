@@ -18,7 +18,7 @@ export function picture(base, alt, href) {
 export function renderLatest(projects) {
   const title = picture("title-latest", "/002 Latest projects. Newest original repositories, refreshed nightly.");
   if (!projects.length) return `<p>\n${title}\n</p>\n\nNo public projects yet.`;
-  const rows = projects.map((p, i) => picture(`latest-${i + 1}`, `${p.name}. ${p.description ?? ""} Created ${p.createdAt}. ${p.language ?? ""}. ${p.stars} stars.`, p.url));
+  const rows = projects.map((p, i) => picture(`recent-${i + 1}`, `${p.name}. ${p.description ?? ""} Created ${p.createdAt}. ${p.language ?? ""}. ${p.stars} stars.`, p.url));
   return `<p>\n${title}\n${rows.join("\n")}\n</p>`;
 }
 
