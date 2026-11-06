@@ -67,7 +67,7 @@
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/recent-1-mobile-light.svg">
   <source media="(max-width: 600px)" srcset="./assets/recent-1-mobile-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/recent-1-light.svg">
-  <img src="./assets/recent-1-dark.svg" alt="OpenInstaLink. Created 2026-11-02. . 0 stars." width="100%">
+  <img src="./assets/recent-1-dark.svg" alt="OpenInstaLink. Created 2026-11-02. Rust. 0 stars." width="100%">
 </picture></a>
 <a href="https://github.com/Osyna/Overglass"><picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/recent-2-mobile-light.svg">
